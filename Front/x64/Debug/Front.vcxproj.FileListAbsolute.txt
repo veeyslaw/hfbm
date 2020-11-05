@@ -1,0 +1,2 @@
+F:\Proj\hfbm\Front\x64\Debug\Front.exe
+F:\Proj\hfbm\Front\x64\Debug\Front.pdb
