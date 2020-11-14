@@ -1,8 +1,0 @@
-﻿  rcc gui.qrc
-  moc gui.h
-   RCC: Warning: No resources in 'F:\Proj\hfbm\hfbm\gui.qrc'.
-  gui.cpp
-  main.cpp
-  qrc_gui.cpp
-  moc_gui.cpp
-  hfbm.vcxproj -> F:\Proj\hfbm\hfbm\x64\Debug\hfbm.exe
