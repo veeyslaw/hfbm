@@ -1,9 +1,0 @@
-﻿  uic GUI.ui
-  rcc GUI.qrc
-  moc GUI.h
-   RCC: Warning: No resources in 'F:\Proj\hfbm\Front\GUI.qrc'.
-  GUI.cpp
-  main.cpp
-  qrc_GUI.cpp
-  moc_GUI.cpp
-  Front.vcxproj -> F:\Proj\hfbm\Front\x64\Debug\Front.exe
