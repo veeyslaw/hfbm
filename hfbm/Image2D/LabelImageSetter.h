@@ -1,17 +1,14 @@
 #pragma once
 
-#include <QImage>
 #include <QLabel>
 
-class LabelImageLoader
+class LabelImageSetter
 {
 private:
-	QImage image;
 	QLabel* imageLabel;
 public:
-	LabelImageLoader(QLabel*);
+	LabelImageSetter(QLabel*);
 	bool loadImage(const QString&);
 private:
-	void setImage(const QImage&);
 };
 
