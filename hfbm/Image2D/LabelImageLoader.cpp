@@ -1,11 +1,11 @@
 #include <QImageReader>
 #include <QColorSpace>
 
-#include "ImageViewer.h"
+#include "LabelImageLoader.h"
 
-ImageViewer::ImageViewer(QLabel* label) : imageLabel(label) {};
+LabelImageLoader::LabelImageLoader(QLabel* label) : imageLabel(label) {};
 
-bool ImageViewer::uploadImage(const QString& fileName) {
+bool LabelImageLoader::loadImage(const QString& fileName) {
 	QImageReader reader(fileName);
 	const QImage image = reader.read();
 	if (image.isNull()) {
@@ -17,7 +17,7 @@ bool ImageViewer::uploadImage(const QString& fileName) {
 	return true;
 }
 
-void ImageViewer::setImage(const QImage& newImage) {
+void LabelImageLoader::setImage(const QImage& newImage) {
 	image = newImage;
 	if (image.colorSpace().isValid()) {
 		image.convertToColorSpace(QColorSpace::SRgb);
