@@ -7,8 +7,7 @@ class Image
 private:
 	QImage image;
 public:
-	bool loadImage(const QString&);
-private:
-	void setImage(const QImage&);
+	const QImage& getImage() const;
+	void loadImage(const QString&);
 };
 
