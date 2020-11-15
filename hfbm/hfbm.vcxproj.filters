@@ -30,7 +30,10 @@
     <ClCompile Include="GUI\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image2D\ImageViewer.cpp">
+    <ClCompile Include="Image2D\LabelImageLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,13 +48,16 @@
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image2D\ImageViewer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <QtRcc Include="GUI\gui.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Image2D\LabelImageLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

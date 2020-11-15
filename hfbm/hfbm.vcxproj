@@ -87,7 +87,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GUI\gui.cpp" />
-    <ClCompile Include="Image2D\ImageViewer.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Image2D\LabelImageLoader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +98,8 @@
     <QtUic Include="GUI\gui.ui" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image2D\ImageViewer.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="Image2D\LabelImageLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GUI\gui.qrc" />

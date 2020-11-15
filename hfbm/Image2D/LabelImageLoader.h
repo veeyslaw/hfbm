@@ -3,14 +3,14 @@
 #include <QImage>
 #include <QLabel>
 
-class ImageViewer
+class LabelImageLoader
 {
 private:
 	QImage image;
 	QLabel* imageLabel;
 public:
-	ImageViewer(QLabel*);
-	bool uploadImage(const QString&);
+	LabelImageLoader(QLabel*);
+	bool loadImage(const QString&);
 private:
 	void setImage(const QImage&);
 };
