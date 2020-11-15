@@ -23,7 +23,7 @@
     <item row="1" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="mainPage">
        <layout class="QGridLayout" name="mainPageLayout">
@@ -289,7 +289,7 @@
          </widget>
         </item>
         <item row="7" column="0">
-         <widget class="QCheckBox" name="BaseCheckBox">
+         <widget class="QCheckBox" name="baseCheckBox">
           <property name="text">
            <string>Base</string>
           </property>
