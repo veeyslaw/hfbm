@@ -24,22 +24,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="gui.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtUic Include="gui.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtMoc Include="gui.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="gui.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\gui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Image2D\ImageViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <QtMoc Include="GUI\gui.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="GUI\gui.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Image2D\ImageViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="GUI\gui.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

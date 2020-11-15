@@ -10,9 +10,11 @@ bool ImageViewer::uploadImage(const QString& fileName) {
 	const QImage image = reader.read();
 	if (image.isNull()) {
 		// TODO handle null image
+		return false;
 	}
 
 	setImage(image);
+	return true;
 }
 
 void ImageViewer::setImage(const QImage& newImage) {
