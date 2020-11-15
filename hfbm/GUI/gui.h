@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_gui.h"
+#include "../Image2D/LabelImageSetter.h"
 
 class GUI : public QMainWindow
 {
@@ -12,4 +13,6 @@ public:
 
 private:
     Ui::GUIClass ui;
+    
+    LabelImageSetter labelImageSetter;
 };

@@ -3,7 +3,10 @@
 
 #include "LabelImageSetter.h"
 
-LabelImageSetter::LabelImageSetter(QLabel* label) : imageLabel(label) {};
+void LabelImageSetter::setLabel(QLabel* newLabel)
+{
+	imageLabel = newLabel;
+}
 
 void LabelImageSetter::setImage(const QImage& image)
 {

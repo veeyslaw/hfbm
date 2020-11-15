@@ -30,10 +30,10 @@
     <ClCompile Include="GUI\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image2D\LabelImageLoader.cpp">
+    <ClCompile Include="Image2D\Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
+    <ClCompile Include="Image2D\LabelImageSetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +53,10 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image2D\LabelImageLoader.h">
+    <ClInclude Include="Image2D\Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
+    <ClInclude Include="Image2D\LabelImageSetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
