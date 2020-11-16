@@ -2,17 +2,25 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_gui.h"
+#include "../Image2D/Image.h"
 #include "../Image2D/LabelImageSetter.h"
 
 class GUI : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    GUI(QWidget *parent = Q_NULLPTR);
+  GUI(std::shared_ptr<Image> image, QWidget *parent = Q_NULLPTR);
 
 private:
-    Ui::GUIClass ui;
+  void connectButtons();
+
+private slots:
+  void loadImage();
+
+private:
+  Ui::GUIClass ui;
     
-    LabelImageSetter labelImageSetter;
+  std::shared_ptr<Image> image;
+  LabelImageSetter labelImageSetter;
 };

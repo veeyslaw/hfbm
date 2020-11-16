@@ -8,6 +8,6 @@ private:
 	QImage image;
 public:
 	const QImage& getImage() const;
-	void loadImage(const QString&);
+	bool loadImage(const QString&);
 };
 
