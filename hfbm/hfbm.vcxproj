@@ -46,6 +46,15 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(QTDIR)\include\Qt3DExtras;$(QTDIR)\include\Qt3DCore;$(QTDIR)\include\Qt3DRender;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Qt53DCore.lib;Qt53DRender.lib;Qt53DExtras.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);C:\ProgramMentallyChallenged\Qt\5.15.1\msvc2019_64\lib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>msvc2019_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
@@ -87,9 +96,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GUI\gui.cpp" />
-    <ClCompile Include="Image2D\Image.cpp" />
-    <ClCompile Include="Image2D\LabelImageSetter.cpp" />
+    <ClCompile Include="Image\Image.cpp" />
+    <ClCompile Include="Image\LabelImageSetter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh\oglwidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="GUI\gui.h" />
@@ -98,11 +108,12 @@
     <QtUic Include="GUI\gui.ui" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image2D\Image.h" />
-    <ClInclude Include="Image2D\LabelImageSetter.h" />
+    <QtRcc Include="GUI\gui.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="GUI\gui.qrc" />
+    <ClInclude Include="Image\Image.h" />
+    <ClInclude Include="Image\LabelImageSetter.h" />
+    <ClInclude Include="Mesh\oglwidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

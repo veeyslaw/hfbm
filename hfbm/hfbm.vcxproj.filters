@@ -30,10 +30,13 @@
     <ClCompile Include="GUI\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image2D\Image.cpp">
+    <ClCompile Include="Image\Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image2D\LabelImageSetter.cpp">
+    <ClCompile Include="Image\LabelImageSetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\oglwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +56,13 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image2D\Image.h">
+    <ClInclude Include="Image\Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Image2D\LabelImageSetter.h">
+    <ClInclude Include="Image\LabelImageSetter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\oglwidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

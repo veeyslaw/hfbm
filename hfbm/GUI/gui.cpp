@@ -1,27 +1,28 @@
 #include "gui.h"
-#include "../Image2D/Image.h"
+#include "../Image/Image.h"
 
 #include <QFileDialog>
 #include <QImageReader>
 #include <QImageWriter>
 #include <QStandardPaths>
-
-#include <QMessageBox> // TODELETE
+#include <QUrl>
 
 #define CONVERSION_PAGE 0
 #define OPTIONS_PAGE 1
 
 static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMode acceptMode);
 
-GUI::GUI(std::shared_ptr<Image> image, QWidget *parent)
-    : QMainWindow(parent), image(image)
+GUI::GUI(QWidget *parent)
+    : QMainWindow(parent)
 {
   ui.setupUi(this);
 
-  labelImageSetter.setLabel(ui.img2DLabel);
+  labelImageSetter.setLabel(ui.imgLabel);
 
   connectButtons();
   connectCheckBoxes();
+
+  //ui.meshWidget->
 }
 
 void GUI::connectButtons()
@@ -83,9 +84,9 @@ void GUI::loadImage()
   QFileDialog dialog(this, tr("Open File"));
   initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
 
-  while (dialog.exec() == QDialog::Accepted && !image->loadImage(dialog.selectedFiles().first())) {}
+  while (dialog.exec() == QDialog::Accepted && !image.loadImage(dialog.selectedFiles().first())) {}
 
-  labelImageSetter.setImage(image->getImage());
+  labelImageSetter.setImage(image.getImage());
 }
 
 static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMode acceptMode)
