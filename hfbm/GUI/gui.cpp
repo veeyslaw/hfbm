@@ -8,6 +8,9 @@
 
 #include <QMessageBox> // TODELETE
 
+#define CONVERSION_PAGE 0
+#define OPTIONS_PAGE 1
+
 static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMode acceptMode);
 
 GUI::GUI(std::shared_ptr<Image> image, QWidget *parent)
@@ -18,11 +21,61 @@ GUI::GUI(std::shared_ptr<Image> image, QWidget *parent)
   labelImageSetter.setLabel(ui.img2DLabel);
 
   connectButtons();
+  connectCheckBoxes();
 }
 
 void GUI::connectButtons()
 {
-  connect(ui.uploadButton, SIGNAL(clicked()), this, SLOT(loadImage()));
+  connect(ui.uploadButton, &QPushButton::clicked, this, &GUI::loadImage);
+  connect(ui.convertButton, &QPushButton::clicked, this, &GUI::convert);
+  connect(ui.toOptionsButton, &QPushButton::clicked, this, &GUI::goToConversion);
+  connect(ui.toConversionButton, &QPushButton::clicked, this, &GUI::goToOptions);
+}
+
+void GUI::connectCheckBoxes()
+{
+  connect(ui.autoLevelCheckBox, &QCheckBox::toggled, this, &GUI::onAutoLevelChange);
+  connect(ui.borderCheckBox, &QCheckBox::toggled, this, &GUI::onBorderChange);
+  connect(ui.baseCheckBox, &QCheckBox::toggled, this, &GUI::onBaseChange);
+}
+
+void GUI::convert()
+{
+  // TODO
+}
+
+void GUI::goToOptions()
+{
+  ui.stackedWidget->setCurrentIndex(CONVERSION_PAGE);
+}
+
+void GUI::goToConversion()
+{
+  ui.stackedWidget->setCurrentIndex(OPTIONS_PAGE);
+}
+
+void GUI::onAutoLevelChange(bool checked)
+{
+  ui.imageHeightLabel->setEnabled(checked);
+  ui.imageHeightSlider->setEnabled(checked);
+  ui.imageHeightValueLabel->setEnabled(checked);
+}
+
+void GUI::onBorderChange(bool checked)
+{
+  ui.borderThicknessLabel->setEnabled(checked);
+  ui.borderThicknessSlider->setEnabled(checked);
+  ui.borderThicknessValueLabel->setEnabled(checked);
+  ui.borderHeightLabel->setEnabled(checked);
+  ui.borderHeightSlider->setEnabled(checked);
+  ui.borderHeightValueLabel->setEnabled(checked);
+}
+
+void GUI::onBaseChange(bool checked)
+{
+  ui.baseHeightLabel->setEnabled(checked);
+  ui.baseHeightSlider->setEnabled(checked);
+  ui.baseHeightValueLabel->setEnabled(checked);
 }
 
 void GUI::loadImage()

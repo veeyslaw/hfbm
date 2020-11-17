@@ -101,7 +101,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QPushButton" name="optionsButton">
+         <widget class="QPushButton" name="toOptionsButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
             <horstretch>0</horstretch>
@@ -343,7 +343,7 @@
          </widget>
         </item>
         <item row="11" column="3">
-         <widget class="QPushButton" name="toMainPageButton">
+         <widget class="QPushButton" name="toConversionButton">
           <property name="text">
            <string>Back</string>
           </property>
@@ -436,6 +436,9 @@
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -452,7 +455,7 @@
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -461,7 +464,11 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

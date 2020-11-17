@@ -14,9 +14,17 @@ public:
 
 private:
   void connectButtons();
+  void connectCheckBoxes();
 
 private slots:
   void loadImage();
+  void convert();
+  void goToOptions();
+  void goToConversion();
+
+  void onAutoLevelChange(bool checked);
+  void onBorderChange(bool checked);
+  void onBaseChange(bool checked);
 
 private:
   Ui::GUIClass ui;
