@@ -1,10 +1,13 @@
-#include "gui.h"
+#include "GUI/gui.h"
 #include <QtWidgets/QApplication>
+
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    GUI w;
-    w.show();
-    return a.exec();
+  
+  QApplication a(argc, argv);
+
+  GUI w;
+  w.show();
+  return a.exec();
 }
