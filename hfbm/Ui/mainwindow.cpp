@@ -21,8 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
 
   connectButtons();
   connectCheckBoxes();
-
-  //ui.meshWidget->
 }
 
 void MainWindow::connectButtons()

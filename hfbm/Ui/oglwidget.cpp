@@ -13,9 +13,7 @@ void OGLWidget::initializeGL()
   
   glEnable(GL_LIGHT0);
   glEnable(GL_LIGHTING);
-  glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-  glEnable(GL_COLOR_MATERIAL);
-  
+  // glEnable(GL_COLOR_MATERIAL); // TODO if cool keep, discard - else
 }
 
 void OGLWidget::paintGL()
