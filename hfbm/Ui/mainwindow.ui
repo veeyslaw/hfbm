@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GUIClass</class>
- <widget class="QMainWindow" name="GUIClass">
+ <class>MainWindowClass</class>
+ <widget class="QMainWindow" name="MainWindowClass">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -475,11 +475,9 @@
   <customwidget>
    <class>OGLWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>../../../Mesh/oglwidget.h</header>
+   <header>../../../Ui/oglwidget.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="gui.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

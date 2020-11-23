@@ -51,7 +51,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -95,25 +95,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GUI\gui.cpp" />
     <ClCompile Include="Image\Image.cpp" />
     <ClCompile Include="Image\LabelImageSetter.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mesh\oglwidget.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="GUI\gui.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="GUI\gui.ui" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="GUI\gui.qrc" />
+    <ClCompile Include="Ui\mainwindow.cpp" />
+    <ClCompile Include="Ui\oglwidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image\Image.h" />
     <ClInclude Include="Image\LabelImageSetter.h" />
-    <ClInclude Include="Mesh\oglwidget.h" />
+    <ClInclude Include="Ui\oglwidget.h" />
+    <QtMoc Include="Ui\mainwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Ui\mainwindow.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

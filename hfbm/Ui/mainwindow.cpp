@@ -1,4 +1,4 @@
-#include "gui.h"
+#include "mainwindow.h"
 #include "../Image/Image.h"
 
 #include <QFileDialog>

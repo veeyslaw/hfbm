@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "ui_gui.h"
+#include "ui_mainwindow.h"
 #include "../Image/Image.h"
 #include "../Image/LabelImageSetter.h"
 
@@ -26,7 +26,7 @@ private slots:
   void onBaseChange(bool checked);
 
 private:
-  Ui::GUIClass ui;
+  Ui::MainWindowClass ui;
     
   Image image;
   
