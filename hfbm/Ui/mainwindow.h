@@ -5,12 +5,12 @@
 #include "../Image/Image.h"
 #include "../Image/LabelImageSetter.h"
 
-class GUI : public QMainWindow
+class MainWindow : public QMainWindow
 {
   Q_OBJECT
 
 public:
-  GUI(QWidget *parent = Q_NULLPTR);
+  MainWindow(QWidget *parent = Q_NULLPTR);
 
 private:
   void connectButtons();

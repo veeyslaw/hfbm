@@ -475,7 +475,7 @@
   <customwidget>
    <class>OGLWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>../../../Ui/oglwidget.h</header>
+   <header>oglwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

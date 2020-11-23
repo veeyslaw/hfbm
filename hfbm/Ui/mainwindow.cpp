@@ -12,7 +12,7 @@
 
 static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMode acceptMode);
 
-GUI::GUI(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
   ui.setupUi(this);
@@ -25,44 +25,44 @@ GUI::GUI(QWidget *parent)
   //ui.meshWidget->
 }
 
-void GUI::connectButtons()
+void MainWindow::connectButtons()
 {
-  connect(ui.uploadButton, &QPushButton::clicked, this, &GUI::loadImage);
-  connect(ui.convertButton, &QPushButton::clicked, this, &GUI::convert);
-  connect(ui.toOptionsButton, &QPushButton::clicked, this, &GUI::goToConversion);
-  connect(ui.toConversionButton, &QPushButton::clicked, this, &GUI::goToOptions);
+  connect(ui.uploadButton, &QPushButton::clicked, this, &MainWindow::loadImage);
+  connect(ui.convertButton, &QPushButton::clicked, this, &MainWindow::convert);
+  connect(ui.toOptionsButton, &QPushButton::clicked, this, &MainWindow::goToConversion);
+  connect(ui.toConversionButton, &QPushButton::clicked, this, &MainWindow::goToOptions);
 }
 
-void GUI::connectCheckBoxes()
+void MainWindow::connectCheckBoxes()
 {
-  connect(ui.autoLevelCheckBox, &QCheckBox::toggled, this, &GUI::onAutoLevelChange);
-  connect(ui.borderCheckBox, &QCheckBox::toggled, this, &GUI::onBorderChange);
-  connect(ui.baseCheckBox, &QCheckBox::toggled, this, &GUI::onBaseChange);
+  connect(ui.autoLevelCheckBox, &QCheckBox::toggled, this, &MainWindow::onAutoLevelChange);
+  connect(ui.borderCheckBox, &QCheckBox::toggled, this, &MainWindow::onBorderChange);
+  connect(ui.baseCheckBox, &QCheckBox::toggled, this, &MainWindow::onBaseChange);
 }
 
-void GUI::convert()
+void MainWindow::convert()
 {
   // TODO
 }
 
-void GUI::goToOptions()
+void MainWindow::goToOptions()
 {
   ui.stackedWidget->setCurrentIndex(CONVERSION_PAGE);
 }
 
-void GUI::goToConversion()
+void MainWindow::goToConversion()
 {
   ui.stackedWidget->setCurrentIndex(OPTIONS_PAGE);
 }
 
-void GUI::onAutoLevelChange(bool checked)
+void MainWindow::onAutoLevelChange(bool checked)
 {
   ui.imageHeightLabel->setEnabled(checked);
   ui.imageHeightSlider->setEnabled(checked);
   ui.imageHeightValueLabel->setEnabled(checked);
 }
 
-void GUI::onBorderChange(bool checked)
+void MainWindow::onBorderChange(bool checked)
 {
   ui.borderThicknessLabel->setEnabled(checked);
   ui.borderThicknessSlider->setEnabled(checked);
@@ -72,14 +72,14 @@ void GUI::onBorderChange(bool checked)
   ui.borderHeightValueLabel->setEnabled(checked);
 }
 
-void GUI::onBaseChange(bool checked)
+void MainWindow::onBaseChange(bool checked)
 {
   ui.baseHeightLabel->setEnabled(checked);
   ui.baseHeightSlider->setEnabled(checked);
   ui.baseHeightValueLabel->setEnabled(checked);
 }
 
-void GUI::loadImage()
+void MainWindow::loadImage()
 {
   QFileDialog dialog(this, tr("Open File"));
   initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
