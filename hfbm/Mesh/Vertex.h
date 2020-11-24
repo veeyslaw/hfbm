@@ -1,11 +1,13 @@
 #pragma once
 #include <glm.hpp>
 
-class Vertex
+struct Vertex
 {
-	glm::vec3 position;
-	// glm::vec3 normal;
-	// glm::vec3 color;
-	// glm::vec2 texcoord;
+	Vertex(glm::fvec3 position) : position(position) {}
+
+	glm::fvec3 position;
+	// glm::fvec3 normal;
+	// glm::fvec3 color;
+	// glm::fvec2 texcoord;
 };
 
