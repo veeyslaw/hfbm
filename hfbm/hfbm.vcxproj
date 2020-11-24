@@ -95,18 +95,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HeightMap.cpp" />
     <ClCompile Include="Image\Image.cpp" />
     <ClCompile Include="Image\LabelImageSetter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh\Mesh.cpp" />
+    <ClCompile Include="Triangulator.cpp" />
     <ClCompile Include="Ui\mainwindow.cpp" />
     <ClCompile Include="Ui\oglwidget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HeightMap.h" />
     <ClInclude Include="Image\Image.h" />
     <ClInclude Include="Image\LabelImageSetter.h" />
     <ClInclude Include="Mesh\Mesh.h" />
     <ClInclude Include="Mesh\Vertex.h" />
+    <ClInclude Include="Triangulator.h" />
     <ClInclude Include="Ui\oglwidget.h" />
     <QtMoc Include="Ui\mainwindow.h" />
   </ItemGroup>

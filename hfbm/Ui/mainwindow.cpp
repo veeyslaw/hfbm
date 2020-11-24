@@ -46,6 +46,7 @@ void MainWindow::connectCheckBoxes()
 
 void MainWindow::convert()
 {
+
   // TODO replace testing code with real one
   std::vector<Vertex> vertices;
   vertices.push_back(Vertex(glm::fvec3(200, 0, 0)));
