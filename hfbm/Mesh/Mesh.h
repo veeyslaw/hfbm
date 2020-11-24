@@ -16,7 +16,7 @@ private:
 	uint32_t getNoOfTriangles() const { return noOfVertices / 3; }
 
 private:
-	const std::vector<Vertex>& vertices;
+	std::vector<Vertex> vertices;
 	
 	uint64_t noOfVertices;
 };
