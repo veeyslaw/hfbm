@@ -17,7 +17,7 @@ private:
   void connectCheckBoxes();
 
 private slots:
-  void updateMesh() { ui.meshWidget->update(); }
+  void updateMesh();
   void loadImage();
   void convert();
   void goToOptions();

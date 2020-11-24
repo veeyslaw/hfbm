@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories); F:\libraries\glm\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -98,12 +98,15 @@
     <ClCompile Include="Image\Image.cpp" />
     <ClCompile Include="Image\LabelImageSetter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh\Mesh.cpp" />
     <ClCompile Include="Ui\mainwindow.cpp" />
     <ClCompile Include="Ui\oglwidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image\Image.h" />
     <ClInclude Include="Image\LabelImageSetter.h" />
+    <ClInclude Include="Mesh\Mesh.h" />
+    <ClInclude Include="Mesh\Vertex.h" />
     <ClInclude Include="Ui\oglwidget.h" />
     <QtMoc Include="Ui\mainwindow.h" />
   </ItemGroup>

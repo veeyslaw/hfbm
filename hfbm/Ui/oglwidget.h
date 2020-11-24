@@ -1,10 +1,10 @@
 #pragma once
 
 #include <QOpenGLWidget>
-#include <QOpenGLFunctions>
+#include <QOpenGLExtraFunctions>
 
 class OGLWidget :
-    public QOpenGLWidget, protected QOpenGLFunctions
+    public QOpenGLWidget, protected QOpenGLExtraFunctions
 {
 public:
   OGLWidget(QWidget* parent = Q_NULLPTR);
@@ -14,5 +14,8 @@ protected:
   void initializeGL();
   void resizeGL(int w, int h);
   void paintGL();
+
+private:
+  GLuint vertexbuffer;
 };
 

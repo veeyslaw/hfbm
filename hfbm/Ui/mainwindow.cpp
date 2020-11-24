@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   connectButtons();
   connectCheckBoxes();
+
 }
 
 void MainWindow::connectButtons()
@@ -75,6 +76,10 @@ void MainWindow::onBaseChange(bool checked)
   ui.baseHeightLabel->setEnabled(checked);
   ui.baseHeightSlider->setEnabled(checked);
   ui.baseHeightValueLabel->setEnabled(checked);
+}
+
+void MainWindow::updateMesh() {
+  ui.meshWidget->update();
 }
 
 void MainWindow::loadImage()
