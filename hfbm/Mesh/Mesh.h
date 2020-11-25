@@ -48,7 +48,7 @@ private:
 	glm::fvec3 rotation;
 	glm::fvec3 scale;
 
-	glm::mat4 modelMatrix;
+	glm::fmat4 modelMatrix;
 
 	GLuint vertexArrayObject;
 	GLuint vertexBufferObject;

@@ -74,7 +74,7 @@ void Mesh::initVertexArrayObject() {
 }
 
 void Mesh::updateModelMatrix() {
-	modelMatrix = glm::mat4(1);
+	modelMatrix = glm::fmat4(1);
 	modelMatrix = glm::translate(modelMatrix, origin);
 	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::fvec3(1, 0, 0));
 	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.y), glm::fvec3(0, 1, 0));
@@ -148,7 +148,7 @@ std::vector<GLuint> Mesh::getFlattenedTriangles() const {
 }
 
 void Mesh::updateUniforms(Shader* shader) {
-	shader->setMat4fv(modelMatrix, "ModelMatrix");
+	shader->setMatrix4fv(modelMatrix, "ModelMatrix");
 }
 
 void Mesh::render(Shader* shader) {
