@@ -108,6 +108,7 @@
     <ClInclude Include="Image\Image.h" />
     <ClInclude Include="Image\LabelImageSetter.h" />
     <ClInclude Include="Mesh\Mesh.h" />
+    <ClInclude Include="Mesh\TriangleIndices.h" />
     <ClInclude Include="Mesh\Vertex.h" />
     <ClInclude Include="Triangulation\HeightMap.h" />
     <ClInclude Include="Triangulation\Naive.h" />

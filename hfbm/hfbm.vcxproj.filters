@@ -74,6 +74,9 @@
     <ClInclude Include="Triangulation\Triangulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh\TriangleIndices.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Ui\mainwindow.h">

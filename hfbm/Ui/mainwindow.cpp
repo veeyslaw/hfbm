@@ -6,17 +6,15 @@
 #include <QImageWriter>
 #include <QStandardPaths>
 #include <QUrl>
+#include <string>
 
 #include "../Mesh/Vertex.h"
 #include "../Mesh/Mesh.h"
 #include "../Triangulation/Naive.h"
 
-#include <string>
 
 #define CONVERSION_PAGE 0
 #define OPTIONS_PAGE 1
-
-static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMode acceptMode);
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -94,24 +92,16 @@ void MainWindow::updateMesh() {
   ui.meshWidget->update();
 }
 
-void MainWindow::loadImage()
-{
-  QFileDialog dialog(this, tr("Open File"));
-  initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
-
-  while (dialog.exec() == QDialog::Accepted && !image.loadImage(dialog.selectedFiles().first())) {}
-
-  labelImageSetter.setImage(image.getImage());
-}
 
 static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMode acceptMode)
+// TODO REFACTOR
 {
   static bool firstDialog = true;
 
   if (firstDialog) {
     firstDialog = false;
-    const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-    dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
+    // const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+    // dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
   }
 
   QStringList mimeTypeFilters;
@@ -124,4 +114,14 @@ static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMo
   dialog.selectMimeTypeFilter("image/jpeg");
   if (acceptMode == QFileDialog::AcceptSave)
     dialog.setDefaultSuffix("jpg");
+}
+
+void MainWindow::loadImage()
+{
+  QFileDialog dialog(this, tr("Open File"));
+  initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
+
+  while (dialog.exec() == QDialog::Accepted && !image.loadImage(dialog.selectedFiles().first())) {}
+
+  labelImageSetter.setImage(image.getImage());
 }

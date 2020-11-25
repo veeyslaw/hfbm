@@ -11,17 +11,27 @@ class Triangulator
 public:
 	virtual void run() = 0;
 	Mesh getMesh() const {
-		return done ? Mesh(vertices) : Mesh(std::vector<glm::vec3>());
+		return done ? Mesh(points, triangleIndices) :
+			Mesh(std::vector<glm::fvec3>(), std::vector<TriangleIndices>());
 	}
 
 protected:
 	Triangulator::Triangulator(const QImage& image) : heightMap(image) {
-		vertices.reserve((long long) heightMap.getHeight() * heightMap.getWidth());
+		points.reserve((long long) heightMap.getHeight() * heightMap.getWidth());
+	}
+
+	void mirrorY() {
+		auto width = heightMap.getWidth();
+
+		for (auto& point : points) {
+			point[1] = width - point[1];
+		}
 	}
 
 protected:
 	HeightMap heightMap;
-	std::vector<glm::fvec3> vertices;
+	std::vector<glm::fvec3> points;
+	std::vector<TriangleIndices> triangleIndices;
 
 	bool done = false;
 };

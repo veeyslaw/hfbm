@@ -1,23 +1,26 @@
 #pragma once
 
+#include <cstdint>
 #include <vector>
+#include <string>
 #include <QOpenGlExtraFunctions>
 #include "Vertex.h"
-#include <string>
+#include "TriangleIndices.h"
 
 class Mesh : public QOpenGLExtraFunctions
 {
 public:
-	Mesh(const std::vector<glm::fvec3>&);
-	~Mesh();
+	Mesh(const std::vector<glm::fvec3>&, const std::vector<TriangleIndices>&);
 
 	void saveToSTL(const std::string&) const;
 private:
-	uint32_t getNoOfTriangles() const { return noOfVertices / 3; }
+	std::uint32_t getNoOfTriangles() const { return noOfTriangles; }
+	void writeTriangleData(std::ofstream& fileStream) const;
 
 private:
 	std::vector<Vertex> vertices;
+	std::vector<TriangleIndices> triangleIndices;
 	
-	uint64_t noOfVertices;
+	std::int64_t noOfVertices;
+	std::uint32_t noOfTriangles;
 };
-

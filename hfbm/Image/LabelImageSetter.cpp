@@ -10,7 +10,5 @@ void LabelImageSetter::setLabel(QLabel* newLabel)
 
 void LabelImageSetter::setImage(const QImage& image)
 {
-	QImage localImage = image;
-
 	imageLabel->setPixmap(QPixmap::fromImage(image));
 }

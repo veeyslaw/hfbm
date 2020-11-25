@@ -8,49 +8,50 @@ void Naive::run() {
 	auto height = heightMap.getHeight();
 	auto width = heightMap.getWidth();
 
+	if (height <= 0 || width <= 0) {
+		done = true;
+		return;
+	}
+
+	points.reserve((long long) height * width);
+
+	float scale = 50;
+	for (auto y = 0; y < height; y++) {
+		for (auto x = 0; x < width; x++) {
+			auto z = scale * heightMap.at((long long) y * width + x);
+			points.push_back(glm::fvec3(x, y, z));
+		}
+	}
+
+	// 2 triangles each iteration
+	triangleIndices.reserve((long long) 2 * (height - 1) * (width - 1));
+
 	for (auto y = 1; y < height; y++) {
 		for (auto x = 1; x < width; x++) {
 			// |\
 			// | \
-			// |__\ (x, y)
+			// |__\ (x, y) CCW
 
-			auto xp = x;
-			auto yp = y;
-			auto zp = 255 * heightMap.at((long long) yp * width + xp);
-			vertices.push_back(glm::fvec3(xp, yp, zp));
-
-			xp = x - 1;
-			yp = y - 1;
-			zp = 255 * heightMap.at((long long)yp * width + xp);
-			vertices.push_back(glm::fvec3(xp, yp, zp));
-
-			xp = x - 1;
-			yp = y;
-			zp = 255 * heightMap.at((long long)yp * width + xp);
-			vertices.push_back(glm::fvec3(xp, yp, zp));
+			auto point1 = (long long) y * width + x;
+			auto point2 = (long long) (y - 1) * width + (x - 1);
+			auto point3 = (long long) y * width + (x - 1);
+			triangleIndices.push_back(TriangleIndices(point1, point2, point3));
 
 			// ____
 			// \  |
 			//  \ |
 			//   \|
-			//    (x, y)
+			//    (x, y) CCW
 
-			xp = x;
-			yp = y;
-			zp = 255 * heightMap.at((long long)yp * width + xp);
-			vertices.push_back(glm::fvec3(xp, yp, zp));
+			point1 = (long long) y * width + x;
+			point2 = (long long) (y - 1) * width + x;
+			point3 = (long long) (y - 1) * width + (x - 1);
+			triangleIndices.push_back(TriangleIndices(point1, point2, point3));
 
-			xp = x;
-			yp = y - 1;
-			zp = 255 * heightMap.at((long long)yp * width + xp);
-			vertices.push_back(glm::fvec3(xp, yp, zp));
-
-			xp = x - 1;
-			yp = y - 1;
-			zp = 255 * heightMap.at((long long)yp * width + xp);
-			vertices.push_back(glm::fvec3(xp, yp, zp));
 		}
 	}
+
+	mirrorY();
 
 	done = true;
 }

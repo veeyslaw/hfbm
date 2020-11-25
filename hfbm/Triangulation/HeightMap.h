@@ -7,8 +7,8 @@ class HeightMap
 {
 public:
 	HeightMap(const QImage&);
-	long getHeight() const { return height; }
-	long getWidth() const { return width; }
+	int getHeight() const { return height; }
+	int getWidth() const { return width; }
 	float at(long long index) const {
 		return values.at(index);
 	}
@@ -16,8 +16,8 @@ public:
 private:
 
 private:
-	long height;
-	long width;
+	int height;
+	int width;
 	std::vector<float> values;
 };
 
