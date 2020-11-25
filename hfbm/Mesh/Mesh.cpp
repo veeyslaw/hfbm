@@ -7,9 +7,14 @@
 
 #define STL_HEADER_LENGTH 80
 
-Mesh::Mesh(const std::vector<Vertex>& vertices) :
-	vertices(vertices),
-	noOfVertices(vertices.size()) {}
+Mesh::Mesh(const std::vector<glm::fvec3>& positions) :
+	noOfVertices(positions.size()) {
+
+	vertices.reserve(noOfVertices);
+	for (auto i = 0; i < noOfVertices; i++) {
+		vertices.push_back(Vertex(positions.at(i)));
+	}
+}
 
 Mesh::~Mesh() {
 

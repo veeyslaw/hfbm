@@ -9,6 +9,7 @@
 
 #include "../Mesh/Vertex.h"
 #include "../Mesh/Mesh.h"
+#include "../Triangulation/Naive.h"
 
 #include <string>
 
@@ -46,55 +47,13 @@ void MainWindow::connectCheckBoxes()
 
 void MainWindow::convert()
 {
+  Naive naiveTriangulator(image.getImage());
+  
+  naiveTriangulator.run();
 
-  // TODO replace testing code with real one
-  std::vector<Vertex> vertices;
-  vertices.push_back(Vertex(glm::fvec3(200, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(0, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(0, 200, 0)));
+  mesh = std::make_unique<Mesh>(naiveTriangulator.getMesh());
 
-  vertices.push_back(Vertex(glm::fvec3(200, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(0, 200, 0)));
-  vertices.push_back(Vertex(glm::fvec3(200, 200, 0)));
-
-  vertices.push_back(Vertex(glm::fvec3(0, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(100, 100, 6)));
-  vertices.push_back(Vertex(glm::fvec3(0, 100, 0)));
-
-  vertices.push_back(Vertex(glm::fvec3(0, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(100, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(100, 100, 6)));
-
-  vertices.push_back(Vertex(glm::fvec3(0, 100, 0)));
-  vertices.push_back(Vertex(glm::fvec3(100, 200, 0)));
-  vertices.push_back(Vertex(glm::fvec3(0, 200, 0)));
-
-  vertices.push_back(Vertex(glm::fvec3(0, 100, 0)));
-  vertices.push_back(Vertex(glm::fvec3(100, 100, 6)));
-  vertices.push_back(Vertex(glm::fvec3(100, 200, 0)));
-
-  vertices.push_back(Vertex(glm::fvec3(100, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(200, 100, 0)));
-  vertices.push_back(Vertex(glm::fvec3(100, 100, 6)));
-
-  vertices.push_back(Vertex(glm::fvec3(100, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(200, 0, 0)));
-  vertices.push_back(Vertex(glm::fvec3(200, 100, 0)));
-
-  vertices.push_back(Vertex(glm::fvec3(100, 100, 6)));
-  vertices.push_back(Vertex(glm::fvec3(200, 200, 0)));
-  vertices.push_back(Vertex(glm::fvec3(100, 200, 0)));
-
-  vertices.push_back(Vertex(glm::fvec3(100, 100, 6)));
-  vertices.push_back(Vertex(glm::fvec3(200, 100, 0)));
-  vertices.push_back(Vertex(glm::fvec3(200, 200, 0)));
-
-  Mesh mesh(vertices);
-
-  mesh.saveToSTL("test.stl");
-
-  std::string str(std::to_string(0));
-  ui.imgLabel->setText(str.c_str());
+  mesh->saveToSTL("test.stl");
 }
 
 void MainWindow::goToOptions()

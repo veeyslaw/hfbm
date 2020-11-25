@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "../Image/Image.h"
 #include "../Image/LabelImageSetter.h"
+#include "../Mesh/Mesh.h"
 
 class MainWindow : public QMainWindow
 {
@@ -28,8 +29,7 @@ private slots:
 
 private:
   Ui::MainWindowClass ui;
-    
   Image image;
-  
   LabelImageSetter labelImageSetter;
+  std::unique_ptr<Mesh> mesh;
 };

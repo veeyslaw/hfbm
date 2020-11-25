@@ -42,10 +42,10 @@
     <ClCompile Include="Mesh\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HeightMap.cpp">
+    <ClCompile Include="Triangulation\HeightMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Triangulator.cpp">
+    <ClCompile Include="Triangulation\Naive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,10 +65,13 @@
     <ClInclude Include="Mesh\Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HeightMap.h">
+    <ClInclude Include="Triangulation\HeightMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Triangulator.h">
+    <ClInclude Include="Triangulation\Naive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangulation\Triangulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

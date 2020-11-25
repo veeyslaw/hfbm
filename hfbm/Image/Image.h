@@ -2,8 +2,6 @@
 
 #include <QImage>
 
-//image.convertTo(QImage::Format_Grayscale16);
-
 class Image
 {
 private:

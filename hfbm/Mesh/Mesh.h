@@ -8,10 +8,10 @@
 class Mesh : public QOpenGLExtraFunctions
 {
 public:
-	Mesh(const std::vector<Vertex>& vertices);
+	Mesh(const std::vector<glm::fvec3>&);
 	~Mesh();
 
-	void saveToSTL(const std::string& path) const;
+	void saveToSTL(const std::string&) const;
 private:
 	uint32_t getNoOfTriangles() const { return noOfVertices / 3; }
 
