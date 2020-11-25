@@ -24,7 +24,7 @@ void Naive::run() {
 	}
 
 	// 2 triangles each iteration
-	triangleIndices.reserve((long long) 2 * (height - 1) * (width - 1));
+	triangles.reserve((long long) 2 * (height - 1) * (width - 1));
 
 	for (auto y = 1; y < height; y++) {
 		for (auto x = 1; x < width; x++) {
@@ -35,7 +35,7 @@ void Naive::run() {
 			auto point1 = (long long) y * width + x;
 			auto point2 = (long long) (y - 1) * width + (x - 1);
 			auto point3 = (long long) y * width + (x - 1);
-			triangleIndices.push_back(TriangleIndices(point1, point2, point3));
+			triangles.push_back(Triangle(point1, point2, point3));
 
 			// ____
 			// \  |
@@ -46,7 +46,7 @@ void Naive::run() {
 			point1 = (long long) y * width + x;
 			point2 = (long long) (y - 1) * width + x;
 			point3 = (long long) (y - 1) * width + (x - 1);
-			triangleIndices.push_back(TriangleIndices(point1, point2, point3));
+			triangles.push_back(Triangle(point1, point2, point3));
 
 		}
 	}

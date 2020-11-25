@@ -11,8 +11,8 @@ class Triangulator
 public:
 	virtual void run() = 0;
 	Mesh getMesh() const {
-		return done ? Mesh(points, triangleIndices) :
-			Mesh(std::vector<glm::fvec3>(), std::vector<TriangleIndices>());
+		return done ? Mesh(points, triangles) :
+			Mesh(std::vector<glm::fvec3>(), std::vector<Triangle>());
 	}
 
 protected:
@@ -31,7 +31,7 @@ protected:
 protected:
 	HeightMap heightMap;
 	std::vector<glm::fvec3> points;
-	std::vector<TriangleIndices> triangleIndices;
+	std::vector<Triangle> triangles;
 
 	bool done = false;
 };

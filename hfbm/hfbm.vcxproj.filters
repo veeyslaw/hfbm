@@ -74,7 +74,7 @@
     <ClInclude Include="Triangulation\Triangulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh\TriangleIndices.h">
+    <ClInclude Include="Mesh\Triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
