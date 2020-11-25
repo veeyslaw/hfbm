@@ -7,7 +7,7 @@ class OGLWidget :
     public QOpenGLWidget, protected QOpenGLExtraFunctions
 {
 public:
-  OGLWidget(QWidget* parent = Q_NULLPTR);
+  OGLWidget(QWidget* parent);
   ~OGLWidget();
 
 protected:

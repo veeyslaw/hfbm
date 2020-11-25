@@ -10,12 +10,15 @@
 class Mesh : public QOpenGLExtraFunctions
 {
 public:
-	Mesh(const std::vector<glm::fvec3>&, const std::vector<TriangleIndices>&);
+	Mesh(
+		const std::vector<glm::fvec3>&,
+		const std::vector<TriangleIndices>&
+	);
 
 	void saveToSTL(const std::string&) const;
 private:
 	std::uint32_t getNoOfTriangles() const { return noOfTriangles; }
-	void writeTriangleData(std::ofstream& fileStream) const;
+	void writeTriangleData(std::ofstream&) const;
 
 private:
 	std::vector<Vertex> vertices;
