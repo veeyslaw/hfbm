@@ -48,6 +48,9 @@
     <ClCompile Include="Triangulation\Naive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image\Image.h">
@@ -77,6 +80,9 @@
     <ClInclude Include="Mesh\Triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Ui\mainwindow.h">
@@ -87,5 +93,13 @@
     <QtUic Include="Ui\mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mesh\FragmentShader.glsl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Mesh\VertexShader.glsl">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
