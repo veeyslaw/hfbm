@@ -34,7 +34,7 @@ Mesh::Mesh(
 	}
 
 	initVertexArrayObject();
-	// updateModelMatrix();
+	updateModelMatrix();
 }
 
 void Mesh::cleanUp() {
@@ -78,9 +78,9 @@ void Mesh::initVertexArrayObject() {
 void Mesh::updateModelMatrix() {
 	modelMatrix = glm::fmat4(1);
 	modelMatrix = glm::translate(modelMatrix, origin);
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::fvec3(1, 0, 0));
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.y), glm::fvec3(0, 1, 0));
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.z), glm::fvec3(0, 0, 1));
+	modelMatrix = glm::rotate(modelMatrix, rotation.x, glm::fvec3(1, 0, 0));
+	modelMatrix = glm::rotate(modelMatrix, rotation.y, glm::fvec3(0, 1, 0));
+	modelMatrix = glm::rotate(modelMatrix, rotation.z, glm::fvec3(0, 0, 1));
 	modelMatrix = glm::translate(modelMatrix, position - origin);
 	modelMatrix = glm::scale(modelMatrix, scale);
 }
@@ -151,8 +151,8 @@ void Mesh::updateUniforms(std::shared_ptr<Shader> shader) {
 }
 
 void Mesh::render(std::shared_ptr<Shader> shader) {
-	//updateModelMatrix();
-	//updateUniforms(shader);
+	updateModelMatrix();
+	updateUniforms(shader);
 
 	shader->use();
 

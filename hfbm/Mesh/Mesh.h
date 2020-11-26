@@ -21,6 +21,8 @@ public:
 	);
 	void cleanUp();
 
+	void rotate(const glm::vec3& amount) { rotation += amount; }
+	void scaleUp(const glm::vec3& amount) { scale += amount; }
 	void render(std::shared_ptr<Shader> shader);
 
 	void saveToSTL(const std::string&) const;
