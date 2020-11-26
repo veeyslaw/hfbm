@@ -15,7 +15,7 @@ void Naive::run() {
 
 	points.reserve((long long) height * width);
 
-	float scale = 50;
+	float scale = 0.1;//50;
 	for (auto y = 0; y < height; y++) {
 		for (auto x = 0; x < width; x++) {
 			auto z = scale * heightMap.at((long long) y * width + x);
@@ -52,6 +52,14 @@ void Naive::run() {
 	}
 
 	mirrorY();
+
+	auto scaleDown = std::max(width, height) / 2;
+	for (auto& point : points) {
+		point.x -= width / 2;
+		point.y -= height / 2;
+		point.x /= scaleDown;
+		point.y /= scaleDown;
+	}
 
 	done = true;
 }

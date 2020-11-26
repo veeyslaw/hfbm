@@ -15,9 +15,9 @@ public:
   void setMesh(std::shared_ptr<Mesh> newMesh) {
     mesh.swap(newMesh);
 
-    //fkinPoints = mesh->vertices;
-    //fkinIndices = mesh->getFlattenedTriangles();
-
+    fkinPoints = mesh->vertices;
+    fkinIndices = mesh->getFlattenedTriangles();
+    /*
     fkinPoints = std::vector<Vertex>();
     fkinPoints.push_back(Vertex(glm::fvec3(0)));
     fkinPoints.push_back(Vertex(glm::fvec3(0, 1, 0)));
@@ -26,7 +26,7 @@ public:
     fkinIndices.push_back(0);
     fkinIndices.push_back(1);
     fkinIndices.push_back(2);
-
+    */
     initVAO();
   }
 

@@ -23,10 +23,10 @@ protected:
 	}
 
 	void mirrorY() {
-		auto width = heightMap.getWidth();
+		auto height = heightMap.getHeight();
 
 		for (auto& point : points) {
-			point[1] = width - point[1];
+			point[1] = height - point[1];
 		}
 	}
 

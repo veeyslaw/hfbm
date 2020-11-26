@@ -45,7 +45,7 @@ Mesh::~Mesh() {
 }
 
 void Mesh::initVertexArrayObject() {
-	///*
+	/*
 	vertices = std::vector<Vertex>();
 	vertices.push_back(Vertex(glm::fvec3(0)));
 	vertices.push_back(Vertex(glm::fvec3(0, 1, 0)));
@@ -55,7 +55,7 @@ void Mesh::initVertexArrayObject() {
 	triangles.push_back(Triangle(0, 1, 2));
 	noOfTriangles = triangles.size();
 	noOfIndices = 3 * triangles.size();
-	//*/
+	*/
 	/*
 	glGenVertexArrays(1, &vertexArrayObject);
 	//vertexArrayObject = 1;
