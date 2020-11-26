@@ -9,12 +9,16 @@
 const glm::fvec3 Mesh::origin = glm::fvec3(0);
 
 Mesh::Mesh(
+	// std::shared_ptr<QOpenGLContext> context,
+	QOpenGLContext* context,
 	const std::vector<glm::fvec3>& points,
 	const std::vector<Triangle>& triangles,
 	glm::fvec3 position,
 	glm::fvec3 rotation,
 	glm::fvec3 scale
 	) :
+	//QOpenGLExtraFunctions(context.get()),
+	QOpenGLExtraFunctions(context),
 	triangles(triangles),
 	noOfVertices(points.size()),
 	noOfIndices(3 * triangles.size()),
@@ -28,20 +32,33 @@ Mesh::Mesh(
 		vertices.push_back(Vertex(points.at(i)));
 	}
 
-	initializeOpenGLFunctions();
+	//initializeOpenGLFunctions();
 
 	initVertexArrayObject();
-	updateModelMatrix();
+	//updateModelMatrix();
 }
 
 Mesh::~Mesh() {
-	glDeleteVertexArrays(1, &vertexArrayObject);
-	glDeleteBuffers(1, &vertexBufferObject);
-	glDeleteBuffers(1, &elementBufferObject);
+	//glDeleteBuffers(1, &elementBufferObject);
+	//glDeleteBuffers(1, &vertexBufferObject);
+	//glDeleteVertexArrays(1, &vertexArrayObject);
 }
 
 void Mesh::initVertexArrayObject() {
+	///*
+	vertices = std::vector<Vertex>();
+	vertices.push_back(Vertex(glm::fvec3(0)));
+	vertices.push_back(Vertex(glm::fvec3(0, 1, 0)));
+	vertices.push_back(Vertex(glm::fvec3(1, 0, 0)));
+	noOfVertices = vertices.size();
+	triangles = std::vector<Triangle>();
+	triangles.push_back(Triangle(0, 1, 2));
+	noOfTriangles = triangles.size();
+	noOfIndices = 3 * triangles.size();
+	//*/
+	/*
 	glGenVertexArrays(1, &vertexArrayObject);
+	//vertexArrayObject = 1;
 	glBindVertexArray(vertexArrayObject);
 
 	glGenBuffers(1, &vertexBufferObject);
@@ -50,8 +67,8 @@ void Mesh::initVertexArrayObject() {
 
 	glGenBuffers(1, &elementBufferObject);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferObject);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, noOfIndices * sizeof GLuint,
-		getFlattenedTriangles().data(), GL_STATIC_DRAW);
+	auto flattenedTriangles = getFlattenedTriangles();
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, noOfIndices * sizeof GLuint, flattenedTriangles.data(), GL_STATIC_DRAW);
 	
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof Vertex,
 		reinterpret_cast<const void*>(offsetof(Vertex, position)));
@@ -68,9 +85,10 @@ void Mesh::initVertexArrayObject() {
 	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof Vertex,
 		reinterpret_cast<const void*>(offsetof(Vertex, texcoord)));
 	glEnableVertexAttribArray(3);
-
+	
 	// unbind vertex array object
 	glBindVertexArray(0);
+	*/
 }
 
 void Mesh::updateModelMatrix() {
@@ -136,7 +154,7 @@ void Mesh::saveToSTL(const std::string& path) const {
 
 std::vector<GLuint> Mesh::getFlattenedTriangles() const {
 	std::vector<GLuint> flatTriangles;
-	flatTriangles.reserve((size_t) 3 * noOfTriangles);
+	flatTriangles.reserve(noOfIndices);
 
 	for (auto triangle : triangles) {
 		flatTriangles.push_back(triangle.points.at(0));
@@ -151,17 +169,19 @@ void Mesh::updateUniforms(Shader* shader) {
 	shader->setMatrix4fv(modelMatrix, "ModelMatrix");
 }
 
-void Mesh::render(Shader* shader) {
-	updateModelMatrix();
-	updateUniforms(shader);
+// void Mesh::render(Shader* shader) {
+void Mesh::render() {
+	//updateModelMatrix();
+	//updateUniforms(shader);
 
-	shader->use();
+	//shader->use();
 
 	glBindVertexArray(vertexArrayObject);
 
-	glDrawElements(GL_TRIANGLES, noOfIndices, GL_UNSIGNED_INT, 0);
-
-	shader->unuse();
+	glDrawArrays(GL_TRIANGLES, 0, noOfVertices);
+	//glDrawElements(GL_TRIANGLES, noOfIndices, GL_UNSIGNED_INT, NULL);
 
 	glBindVertexArray(0);
+
+	//shader->unuse();
 }

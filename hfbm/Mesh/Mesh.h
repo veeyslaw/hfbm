@@ -12,29 +12,35 @@ class Mesh : public QOpenGLExtraFunctions
 {
 public:
 	Mesh(
-		const std::vector<glm::fvec3>&,
-		const std::vector<Triangle>&,
+		//std::shared_ptr<QOpenGLContext> context,
+		QOpenGLContext* context,
+		const std::vector<glm::fvec3>& points = std::vector<glm::fvec3>(),
+		const std::vector<Triangle>& triangles = std::vector<Triangle>(),
 		glm::fvec3 position = glm::fvec3(0),
 		glm::fvec3 rotation = glm::fvec3(0),
 		glm::fvec3 scale = glm::vec3(1)
 	);
 	~Mesh();
 
+	// void render(Shader* shader);
+	void render();
+
 	void saveToSTL(const std::string&) const;
 
-private:
+public:
+//private:
 	void initVertexArrayObject();
 	void updateModelMatrix();
 
 	void updateUniforms(Shader* shader);
-	void render(Shader* shader);
 
 	void writeTriangleData(std::ofstream&) const;
 
 	std::uint32_t getNoOfTriangles() const { return noOfTriangles; }
 	std::vector<GLuint> getFlattenedTriangles() const;
 
-private:
+//private:
+public:
 	static const glm::fvec3 origin;
 
 	std::vector<Vertex> vertices;

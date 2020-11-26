@@ -21,5 +21,6 @@ void main()
 	vs_color = vertex_color;
 	vs_texcoord = vertex_texcoord;
 
-	gl_Position = ProjectionMatrix * ViewMatrix * ModelMatrix * vec4(vertex_position, 1);
+	gl_Position = ModelMatrix * vec4(vertex_position, 1);
+	// ProjectionMatrix * ViewMatrix * 
 }

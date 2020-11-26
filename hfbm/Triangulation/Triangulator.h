@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include "glm.hpp"
 #include "HeightMap.h"
@@ -10,9 +11,10 @@ class Triangulator
 {
 public:
 	virtual void run() = 0;
-	Mesh getMesh() const {
-		return done ? Mesh(points, triangles) :
-			Mesh(std::vector<glm::fvec3>(), std::vector<Triangle>());
+	//std::shared_ptr<Mesh> getMesh(std::shared_ptr<QOpenGLContext> context) const {
+	std::shared_ptr<Mesh> getMesh(QOpenGLContext* context) const {
+		return done ? std::make_shared<Mesh>(context, points, triangles) :
+			std::make_shared<Mesh>(context);
 	}
 
 protected:

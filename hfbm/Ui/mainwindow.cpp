@@ -25,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent)
 
   connectButtons();
   connectCheckBoxes();
-
 }
 
 void MainWindow::connectButtons()
@@ -49,9 +48,11 @@ void MainWindow::convert()
   
   naiveTriangulator.run();
 
-  mesh = std::make_unique<Mesh>(naiveTriangulator.getMesh());
+  ui.meshWidget->setMesh(naiveTriangulator.getMesh(ui.meshWidget->getContext()));
 
-  mesh->saveToSTL("test.stl");
+  ui.meshWidget->update();
+
+  ui.meshWidget->getMesh()->saveToSTL("test.stl");
 }
 
 void MainWindow::goToOptions()
