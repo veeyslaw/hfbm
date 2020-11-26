@@ -1,9 +1,8 @@
 #pragma once
 
-#include <vector>
 #include <memory>
-
-#include "glm.hpp"
+#include <vector>
+#include <glm.hpp>
 #include "HeightMap.h"
 #include "../Mesh/Mesh.h"
 
@@ -11,10 +10,11 @@ class Triangulator
 {
 public:
 	virtual void run() = 0;
-	//std::shared_ptr<Mesh> getMesh(std::shared_ptr<QOpenGLContext> context) const {
-	std::shared_ptr<Mesh> getMesh(QOpenGLContext* context) const {
-		return done ? std::make_shared<Mesh>(context, points, triangles) :
-			std::make_shared<Mesh>(context);
+
+	std::unique_ptr<Mesh> getMesh(QOpenGLContext* context) const {
+		return done ?
+			std::make_unique<Mesh>(context, points, triangles) :
+			std::make_unique<Mesh>(context);
 	}
 
 protected:
@@ -26,7 +26,7 @@ protected:
 		auto height = heightMap.getHeight();
 
 		for (auto& point : points) {
-			point[1] = height - point[1];
+			point.y = height - point.y;
 		}
 	}
 

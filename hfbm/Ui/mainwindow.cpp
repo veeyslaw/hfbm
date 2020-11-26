@@ -1,17 +1,15 @@
 #include "mainwindow.h"
 #include "../Image/Image.h"
 
+#include <string>
 #include <QFileDialog>
 #include <QImageReader>
 #include <QImageWriter>
 #include <QStandardPaths>
 #include <QUrl>
-#include <string>
-
 #include "../Mesh/Vertex.h"
 #include "../Mesh/Mesh.h"
 #include "../Triangulation/Naive.h"
-
 
 #define CONVERSION_PAGE 0
 #define OPTIONS_PAGE 1
@@ -25,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   connectButtons();
   connectCheckBoxes();
+  connect(this, &MainWindow::logSent, this, &MainWindow::log);
 }
 
 void MainWindow::connectButtons()
@@ -45,13 +44,10 @@ void MainWindow::connectCheckBoxes()
 void MainWindow::convert()
 {
   Naive naiveTriangulator(image.getImage());
-  
   naiveTriangulator.run();
 
   ui.meshWidget->setMesh(naiveTriangulator.getMesh(ui.meshWidget->getContext()));
-
   ui.meshWidget->update();
-
   ui.meshWidget->getMesh()->saveToSTL("test.stl");
 }
 
@@ -125,4 +121,9 @@ void MainWindow::loadImage()
   while (dialog.exec() == QDialog::Accepted && !image.loadImage(dialog.selectedFiles().first())) {}
 
   labelImageSetter.setImage(image.getImage());
+}
+
+void MainWindow::log(const std::string& errorLog) {
+  ui.imgLabel->clear();
+  ui.imgLabel->setText(errorLog.c_str());
 }

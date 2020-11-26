@@ -1,7 +1,8 @@
 #pragma once
-#include <glm.hpp>
-#include <cstdint>
+
 #include <array>
+#include <cstdint>
+#include <glm.hpp>
 
 struct Triangle
 {

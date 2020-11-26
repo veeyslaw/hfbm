@@ -17,6 +17,9 @@ private:
   void connectButtons();
   void connectCheckBoxes();
 
+signals:
+  void logSent(const std::string&);
+
 private slots:
   void updateMesh();
   void loadImage();
@@ -26,10 +29,10 @@ private slots:
   void onAutoLevelChange(bool checked);
   void onBorderChange(bool checked);
   void onBaseChange(bool checked);
+  void log(const std::string&);
 
 private:
   Ui::MainWindowClass ui;
   Image image;
   LabelImageSetter labelImageSetter;
-  std::unique_ptr<Mesh> mesh;
 };

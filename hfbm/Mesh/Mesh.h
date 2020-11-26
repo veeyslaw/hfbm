@@ -1,18 +1,17 @@
 #pragma once
 
 #include <cstdint>
-#include <vector>
 #include <string>
+#include <vector>
 #include <QOpenGlExtraFunctions>
-#include "Vertex.h"
-#include "Triangle.h"
 #include "Shader.h"
+#include "Triangle.h"
+#include "Vertex.h"
 
 class Mesh : public QOpenGLExtraFunctions
 {
 public:
 	Mesh(
-		//std::shared_ptr<QOpenGLContext> context,
 		QOpenGLContext* context,
 		const std::vector<glm::fvec3>& points = std::vector<glm::fvec3>(),
 		const std::vector<Triangle>& triangles = std::vector<Triangle>(),
@@ -20,15 +19,14 @@ public:
 		glm::fvec3 rotation = glm::fvec3(0),
 		glm::fvec3 scale = glm::vec3(1)
 	);
-	~Mesh();
+	void cleanUp();
 
 	// void render(Shader* shader);
 	void render();
 
 	void saveToSTL(const std::string&) const;
 
-public:
-//private:
+private:
 	void initVertexArrayObject();
 	void updateModelMatrix();
 
@@ -36,12 +34,15 @@ public:
 
 	void writeTriangleData(std::ofstream&) const;
 
-	std::uint32_t getNoOfTriangles() const { return noOfTriangles; }
 	std::vector<GLuint> getFlattenedTriangles() const;
 
-//private:
-public:
+private:
 	static const glm::fvec3 origin;
+	glm::fvec3 position;
+	glm::fvec3 rotation;
+	glm::fvec3 scale;
+
+	glm::fmat4 modelMatrix;
 
 	std::vector<Vertex> vertices;
 	std::vector<Triangle> triangles;
@@ -50,13 +51,7 @@ public:
 	std::int64_t noOfIndices;
 	std::uint32_t noOfTriangles;
 
-	glm::fvec3 position;
-	glm::fvec3 rotation;
-	glm::fvec3 scale;
-
-	glm::fmat4 modelMatrix;
-
-	GLuint vertexArrayObject;
-	GLuint vertexBufferObject;
-	GLuint elementBufferObject;
+	static GLuint vertexArrayObject;
+	static GLuint vertexBufferObject;
+	static GLuint elementBufferObject;
 };
