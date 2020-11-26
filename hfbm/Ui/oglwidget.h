@@ -4,6 +4,7 @@
 #include <QOpenGLWidget>
 #include <QOpenGLExtraFunctions>
 #include "../Mesh/Mesh.h"
+#include "../Mesh/Shader.h"
 
 class OGLWidget :
     public QOpenGLWidget, protected QOpenGLExtraFunctions
@@ -26,5 +27,6 @@ protected:
 
 private:
   std::unique_ptr<Mesh> mesh;
+  std::shared_ptr<Shader> shader;
 };
 

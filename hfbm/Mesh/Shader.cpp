@@ -2,8 +2,14 @@
 #include <gtc/type_ptr.hpp>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
-Shader::Shader(std::string_view vertexShaderFilename, std::string_view fragmentShaderFilename) {
+Shader::Shader(
+	QOpenGLContext* context,
+	std::string_view vertexShaderFilename,
+	std::string_view fragmentShaderFilename
+) : QOpenGLExtraFunctions(context) {
+
 	GLuint vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderFilename);
 	GLuint fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderFilename);
 
@@ -34,17 +40,21 @@ void Shader::setMatrix4fv(const glm::fmat4& matrix, std::string_view name) {
 }
 
 std::string getShaderSource(std::string_view filename) {
-	std::string source;
+	std::stringstream source;
 
 	std::ifstream ifs(filename.data());
+	if (!ifs.is_open()) {
+		std::stringstream ss;
+		ss << "Could not open shader file: " << filename << "\n";
+		throw ss.str();
+	}
 
-	ifs.seekg(0, std::ios::end);
-	source.resize(ifs.tellg());
-	ifs.seekg(0);
+	std::string line;
+	while (std::getline(ifs, line)) {
+		source << line << "\n";
+	}
 
-	ifs.read(source.data(), source.size());
-
-	return source;
+	return source.str();
 }
 
 GLuint Shader::loadShader(GLenum type, std::string_view filename) {
@@ -55,16 +65,16 @@ GLuint Shader::loadShader(GLenum type, std::string_view filename) {
 	glShaderSource(shader, 1, &sources, NULL);
 	glCompileShader(shader);
 
-	/* TODO error checking
 	GLint success;
 	char infoLog[128];
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		glGetShaderInfoLog(shader, 128, NULL, infoLog);
-		print "Shader compile error: " filename "\n"
-		print infoLog "\n"
+		std::stringstream ss;
+		ss << "Shader compile error: " << filename << "\n";
+		ss << infoLog << "\n";
+		throw ss.str();
 	}
-	*/
 
 	return shader;
 }
@@ -77,16 +87,16 @@ void Shader::linkProgram(GLuint vertexShader, GLuint fragmentShader) {
 
 	glLinkProgram(program);
 
-	/* TODO error checking
 	GLint success;
 	char infoLog[128];
 	glGetProgramiv(program, GL_LINK_STATUS, &success);
 	if (!success) {
 		glGetProgramInfoLog(program, 128, NULL, infoLog);
-		print "Program link error\n"
-		print infoLog "\n"
+		std::stringstream ss;
+		ss << "Program link error\n";
+		ss << infoLog << "\n";
+		throw ss.str();
 	}
-	*/
 
 	glUseProgram(0);
 }

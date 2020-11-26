@@ -44,25 +44,13 @@ void Mesh::cleanUp() {
 }
 
 void Mesh::initVertexArrayObject() {
-	vertices = std::vector<Vertex>();
-	vertices.push_back(glm::fvec3(0, 1, 0));
-	vertices.push_back(glm::fvec3(1, 0, 0));
-	vertices.push_back(glm::fvec3(0, 0, 1));
-	noOfVertices = vertices.size();
-	triangles = std::vector<Triangle>();
-	triangles.push_back({ 0, 1, 2 });
-	noOfTriangles = triangles.size();
-	noOfIndices = noOfTriangles * 3;
-
 	if (vertexArrayObject == 0) {
 		glGenVertexArrays(1, &vertexArrayObject);
-		glBindVertexArray(vertexArrayObject);
 		glGenBuffers(1, &vertexBufferObject);
 		glGenBuffers(1, &elementBufferObject);
 	}
-	else {
-		glBindVertexArray(vertexArrayObject);
-	}
+
+	glBindVertexArray(vertexArrayObject);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
 	glBufferData(GL_ARRAY_BUFFER, noOfVertices * sizeof Vertex, vertices.data(), GL_STATIC_DRAW);
@@ -72,8 +60,12 @@ void Mesh::initVertexArrayObject() {
 	glEnableVertexAttribArray(0);
 
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof Vertex,
-		reinterpret_cast<const void*>(offsetof(Vertex, color)));
+		reinterpret_cast<const void*>(offsetof(Vertex, normal)));
 	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof Vertex,
+		reinterpret_cast<const void*>(offsetof(Vertex, color)));
+	glEnableVertexAttribArray(2);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferObject);
 	auto flattenedTriangles = getFlattenedTriangles();
@@ -154,23 +146,19 @@ std::vector<GLuint> Mesh::getFlattenedTriangles() const {
 	return flatTriangles;
 }
 
-void Mesh::updateUniforms(Shader* shader) {
+void Mesh::updateUniforms(std::shared_ptr<Shader> shader) {
 	shader->setMatrix4fv(modelMatrix, "ModelMatrix");
 }
 
-// void Mesh::render(Shader* shader) {
-void Mesh::render() {
+void Mesh::render(std::shared_ptr<Shader> shader) {
 	//updateModelMatrix();
 	//updateUniforms(shader);
 
-	//shader->use();
+	shader->use();
 
 	glBindVertexArray(vertexArrayObject);
-
-	glDrawArrays(GL_TRIANGLES, 0, noOfVertices);
-	//glDrawElements(GL_TRIANGLES, noOfIndices, GL_UNSIGNED_INT, 0);
-
+	glDrawElements(GL_TRIANGLES, noOfIndices, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 
-	//shader->unuse();
+	shader->unuse();
 }

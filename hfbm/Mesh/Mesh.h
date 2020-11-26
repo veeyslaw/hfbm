@@ -21,8 +21,7 @@ public:
 	);
 	void cleanUp();
 
-	// void render(Shader* shader);
-	void render();
+	void render(std::shared_ptr<Shader> shader);
 
 	void saveToSTL(const std::string&) const;
 
@@ -30,7 +29,7 @@ private:
 	void initVertexArrayObject();
 	void updateModelMatrix();
 
-	void updateUniforms(Shader* shader);
+	void updateUniforms(std::shared_ptr<Shader> shader);
 
 	void writeTriangleData(std::ofstream&) const;
 
