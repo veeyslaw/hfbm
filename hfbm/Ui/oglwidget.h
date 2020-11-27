@@ -4,6 +4,7 @@
 #include <QOpenGLWidget>
 #include <QOpenGLExtraFunctions>
 #include <QMouseEvent>
+#include <QWheelEvent>
 #include <QPoint>
 #include "../Mesh/Mesh.h"
 #include "../OpenGL/Shader.h"
@@ -15,7 +16,7 @@ public:
   OGLWidget(QWidget* parent);
   ~OGLWidget();
 
-  void setMesh(std::unique_ptr<Mesh> newMesh) { mesh.swap(newMesh); mesh->scaleUp(glm::fvec3(-0.5)); }
+  void setMesh(std::unique_ptr<Mesh> newMesh) { mesh.swap(newMesh); }
 
   QOpenGLContext* getContext() const;
   const Mesh* getMesh() const { return mesh.get(); }
@@ -28,6 +29,7 @@ protected:
   void mousePressEvent(QMouseEvent*) override;
   void mouseMoveEvent(QMouseEvent*) override;
   void mouseReleaseEvent(QMouseEvent*) override;
+  void wheelEvent(QWheelEvent*) override;
 
 private:
   void initOptions();
@@ -36,7 +38,7 @@ private:
   void updateProjectionMatrix(int, int );
 
   void rotateMesh(QMouseEvent*);
-  void scaleMesh(QMouseEvent*);
+  void scaleMesh(QWheelEvent*);
 
 private:
   std::unique_ptr<Mesh> mesh;

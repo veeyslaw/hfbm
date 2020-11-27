@@ -87,8 +87,12 @@ void OGLWidget::rotateMesh(QMouseEvent* event) {
   update();
 }
 
-void OGLWidget::scaleMesh(QMouseEvent* event) {
-
+void OGLWidget::scaleMesh(QWheelEvent* event) {
+  auto degrees = event->angleDelta() / 8;
+  auto steps = degrees / 15;
+  auto scale = 0.02;
+  mesh->scaleUp(scale * steps.y());
+  update();
 }
 
 void OGLWidget::mousePressEvent(QMouseEvent* event) {
@@ -109,4 +113,9 @@ void OGLWidget::mouseReleaseEvent(QMouseEvent* event) {
   if (dragging && event->button() == Qt::LeftButton) {
     dragging = false;
   }
+}
+
+void OGLWidget::wheelEvent(QWheelEvent* event) {
+  scaleMesh(event);
+  event->accept();
 }

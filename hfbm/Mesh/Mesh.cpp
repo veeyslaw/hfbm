@@ -16,7 +16,7 @@ Mesh::Mesh(
 	const std::vector<glm::fvec3>& points,
 	const std::vector<Triangle>& triangles,
 	glm::fvec3 rotation,
-	glm::fvec3 scale
+	float scale
 	) :
 	QOpenGLExtraFunctions(context),
 	triangles(triangles),
@@ -37,7 +37,8 @@ Mesh::Mesh(
 			maxz = point.z;
 		}
 	}
-	origin.z = maxz / 2;
+	baseOrigin.z = maxz / 2;
+	origin = baseOrigin;
 
 	initVertexArrayObject();
 	updateModelMatrix();
@@ -85,7 +86,7 @@ void Mesh::updateModelMatrix() {
 	modelMatrix = glm::fmat4(1);
 	modelMatrix = glm::rotate(modelMatrix, rotation.x, glm::fvec3(1, 0, 0));
 	modelMatrix = glm::rotate(modelMatrix, rotation.y, glm::fvec3(0, 1, 0));
-	modelMatrix = glm::scale(modelMatrix, scale);
+	modelMatrix = glm::scale(modelMatrix, glm::fvec3(scale));
 }
 
 void writeHeader(std::ofstream& fileStream) {
@@ -164,4 +165,11 @@ void Mesh::render(std::shared_ptr<Shader> shader) {
 	glBindVertexArray(0);
 
 	shader->unuse();
+}
+
+void Mesh::scaleUp(float amount) {
+	scale += amount;
+	if (scale > 2) { scale = 2; }
+	if (scale < 0.2) { scale = 0.2; }
+	origin = scale * baseOrigin;
 }

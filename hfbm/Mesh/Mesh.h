@@ -16,12 +16,12 @@ public:
 		const std::vector<glm::fvec3>& points = std::vector<glm::fvec3>(),
 		const std::vector<Triangle>& triangles = std::vector<Triangle>(),
 		glm::fvec3 rotation = glm::fvec3(0),
-		glm::fvec3 scale = glm::fvec3(1)
+		float scale = 1
 	);
 	void cleanUp();
 
 	void rotate(const glm::fvec3& amount) { rotation += amount; }
-	void scaleUp(const glm::fvec3& amount) { scale += amount; }
+	void scaleUp(float);
 	void render(std::shared_ptr<Shader> shader);
 
 	void saveToSTL(const std::string&) const;
@@ -37,9 +37,10 @@ private:
 	std::vector<GLuint> getFlattenedTriangles() const;
 
 private:
+	glm::fvec3 baseOrigin = glm::fvec3(0);
 	glm::fvec3 origin = glm::fvec3(0);
 	glm::fvec3 rotation;
-	glm::fvec3 scale;
+	float scale;
 
 	glm::fmat4 modelMatrix;
 
