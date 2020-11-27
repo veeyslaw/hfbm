@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <QOpenGlExtraFunctions>
-#include "Shader.h"
+#include "../OpenGL/Shader.h"
 #include "Triangle.h"
 #include "Vertex.h"
 

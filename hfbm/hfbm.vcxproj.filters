@@ -48,7 +48,7 @@
     <ClCompile Include="Triangulation\Naive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh\Shader.cpp">
+    <ClCompile Include="OpenGL\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +80,7 @@
     <ClInclude Include="Mesh\Triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh\Shader.h">
+    <ClInclude Include="OpenGL\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,10 +95,10 @@
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mesh\FragmentShader.glsl">
+    <None Include="OpenGL\FragmentShader.glsl">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="Mesh\VertexShader.glsl">
+    <None Include="OpenGL\VertexShader.glsl">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

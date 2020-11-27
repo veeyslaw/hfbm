@@ -100,7 +100,7 @@
     <ClCompile Include="Image\LabelImageSetter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh\Mesh.cpp" />
-    <ClCompile Include="Mesh\Shader.cpp" />
+    <ClCompile Include="OpenGL\Shader.cpp" />
     <ClCompile Include="Triangulation\HeightMap.cpp" />
     <ClCompile Include="Triangulation\Naive.cpp" />
     <ClCompile Include="Ui\mainwindow.cpp" />
@@ -110,9 +110,9 @@
     <ClInclude Include="Image\Image.h" />
     <ClInclude Include="Image\LabelImageSetter.h" />
     <ClInclude Include="Mesh\Mesh.h" />
-    <ClInclude Include="Mesh\Shader.h" />
     <ClInclude Include="Mesh\Triangle.h" />
     <ClInclude Include="Mesh\Vertex.h" />
+    <ClInclude Include="OpenGL\Shader.h" />
     <ClInclude Include="Triangulation\HeightMap.h" />
     <ClInclude Include="Triangulation\Naive.h" />
     <ClInclude Include="Triangulation\Triangulator.h" />
@@ -123,8 +123,8 @@
     <QtUic Include="Ui\mainwindow.ui" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mesh\FragmentShader.glsl" />
-    <None Include="Mesh\VertexShader.glsl" />
+    <None Include="OpenGL\FragmentShader.glsl" />
+    <None Include="OpenGL\VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

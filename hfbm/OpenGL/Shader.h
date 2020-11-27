@@ -4,8 +4,8 @@
 #include <QOpenGlExtraFunctions>
 #include <glm.hpp>
 
-static std::string_view defaultVertexShaderFilename("Mesh/VertexShader.glsl");
-static std::string_view defaultFragmentShaderFilename("Mesh/FragmentShader.glsl");
+static std::string_view defaultVertexShaderFilename("OpenGL/VertexShader.glsl");
+static std::string_view defaultFragmentShaderFilename("OpenGL/FragmentShader.glsl");
 
 class Shader : public QOpenGLExtraFunctions
 {

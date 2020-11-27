@@ -4,7 +4,7 @@
 #include <QOpenGLWidget>
 #include <QOpenGLExtraFunctions>
 #include "../Mesh/Mesh.h"
-#include "../Mesh/Shader.h"
+#include "../OpenGL/Shader.h"
 
 class OGLWidget :
     public QOpenGLWidget, protected QOpenGLExtraFunctions
