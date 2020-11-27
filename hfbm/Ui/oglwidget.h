@@ -34,8 +34,10 @@ private:
   std::shared_ptr<Shader> shader;
 
   glm::fmat4 viewMatrix = glm::fmat4(1);
-  glm::fmat4 projectionMatrix = glm::fmat4(1);
+  // TODO remove projectionMatrix?
+  glm::fmat4 projectionMatrix = glm::fmat4(1); 
 
-  glm::fvec3 lightPos0 = glm::fvec3(0, 0, 2);
+  glm::fvec3 cameraPosition = glm::fvec3(0, 0, 1);
+  glm::fvec3 lightPosition = glm::fvec3(0, 0, 2);
 };
 

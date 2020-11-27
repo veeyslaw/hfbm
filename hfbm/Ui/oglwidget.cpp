@@ -20,16 +20,15 @@ void OGLWidget::initializeGL()
 }
 
 void OGLWidget::initOptions() {
-  glClearColor(0, 0, 0, 1);
+  glClearColor(1, 1, 1, 0);
   glEnable(GL_DEPTH_TEST);
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void OGLWidget::initMatrices() {
-  glm::fvec3 camPosition(0, 0, 1);
   glm::fvec3 worldUp(0, 1, 0);
   glm::fvec3 camFront(0, 0, -1);
-  viewMatrix = glm::lookAt(camPosition, camPosition + camFront, worldUp);
+  viewMatrix = glm::lookAt(cameraPosition, cameraPosition + camFront, worldUp);
 
   float fov = 90;
   float nearPlane = .1;
@@ -40,7 +39,8 @@ void OGLWidget::initMatrices() {
 void OGLWidget::updateUniforms() {
   shader->setMatrix4fv(viewMatrix, "ViewMatrix");
   shader->setMatrix4fv(projectionMatrix, "ProjectionMatrix");
-  shader->setVec3fv(lightPos0, "lightPos0");
+  shader->setVec3fv(lightPosition, "lightPosition");
+  shader->setVec3fv(cameraPosition, "cameraPosition");
 }
 
 void OGLWidget::updateProjectionMatrix(int w, int h) {
