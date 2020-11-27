@@ -25,5 +25,5 @@ void main()
 	float specularConstant = pow(max(dot(posToViewDirVec, reflectDirVec), 0), 2);
 	vec3 specularFinal = vec3(1f, 1f, 1f) * specularConstant;
 
-	fs_color = vec4(vs_color, 1.f) * (vec4(ambientLight, 1.f) + vec4(diffuseFinal, 1.f) + vec4(specularFinal, 1.f));
+	fs_color = vec4(vs_color, 1.f) * (vec4(ambientLight, 1.f) + vec4(diffuseFinal, 1.f)/* + vec4(specularFinal, 1.f)*/);
 }
