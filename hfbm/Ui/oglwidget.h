@@ -3,6 +3,8 @@
 #include <memory>
 #include <QOpenGLWidget>
 #include <QOpenGLExtraFunctions>
+#include <QMouseEvent>
+#include <QPoint>
 #include "../Mesh/Mesh.h"
 #include "../OpenGL/Shader.h"
 
@@ -23,11 +25,18 @@ protected:
   void resizeGL(int w, int h);
   void paintGL();
 
+  void mousePressEvent(QMouseEvent*) override;
+  void mouseMoveEvent(QMouseEvent*) override;
+  void mouseReleaseEvent(QMouseEvent*) override;
+
 private:
   void initOptions();
   void initMatrices();
   void updateUniforms();
-  void updateProjectionMatrix(int w, int h);
+  void updateProjectionMatrix(int, int );
+
+  void rotateMesh(QMouseEvent*);
+  void scaleMesh(QMouseEvent*);
 
 private:
   std::unique_ptr<Mesh> mesh;
@@ -39,5 +48,8 @@ private:
 
   glm::fvec3 cameraPosition = glm::fvec3(0, 0, 1);
   glm::fvec3 lightPosition = glm::fvec3(0, .5, 2);
+
+  bool dragging = false;
+  QPoint lastMousePoint;
 };
 

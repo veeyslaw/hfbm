@@ -69,7 +69,6 @@ void OGLWidget::resizeGL(int w, int h)
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   */
-  mesh->rotate(glm::fvec3(0, .05, 0));
 }
 
 QOpenGLContext* OGLWidget::getContext() const {
@@ -77,4 +76,37 @@ QOpenGLContext* OGLWidget::getContext() const {
   sharedContext->setShareContext(context());
   sharedContext->create();
   return sharedContext;
+}
+
+void OGLWidget::rotateMesh(QMouseEvent* event) {
+  // Drag in the direction of the mouse
+  auto yDrag = event->pos().y() - lastMousePoint.y();
+  auto xDrag = event->pos().x() - lastMousePoint.x();
+  auto scale = 0.01;
+  mesh->rotate(glm::fvec3(yDrag * scale, xDrag * scale, 0));
+  update();
+}
+
+void OGLWidget::scaleMesh(QMouseEvent* event) {
+
+}
+
+void OGLWidget::mousePressEvent(QMouseEvent* event) {
+  if (event->button() == Qt::LeftButton) {
+    dragging = true;
+    lastMousePoint = event->pos();
+  }
+}
+
+void OGLWidget::mouseMoveEvent(QMouseEvent* event) {
+  if (dragging && (event->buttons() & Qt::LeftButton)) {
+    rotateMesh(event);
+    lastMousePoint = event->pos();
+  }
+}
+
+void OGLWidget::mouseReleaseEvent(QMouseEvent* event) {
+  if (dragging && event->button() == Qt::LeftButton) {
+    dragging = false;
+  }
 }
