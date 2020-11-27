@@ -71,7 +71,7 @@ void OGLWidget::resizeGL(int w, int h)
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   */
-  mesh->rotate(glm::fvec3(0, 0.05, 0));
+  mesh->rotate(glm::fvec3(0, .05, 0));
 }
 
 QOpenGLContext* OGLWidget::getContext() const {

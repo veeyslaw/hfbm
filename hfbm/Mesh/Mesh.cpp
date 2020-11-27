@@ -15,7 +15,6 @@ Mesh::Mesh(
 	QOpenGLContext* context,
 	const std::vector<glm::fvec3>& points,
 	const std::vector<Triangle>& triangles,
-	glm::fvec3 position,
 	glm::fvec3 rotation,
 	glm::fvec3 scale
 	) :
@@ -24,7 +23,6 @@ Mesh::Mesh(
 	noOfVertices(points.size()),
 	noOfIndices(3 * triangles.size()),
 	noOfTriangles(triangles.size()),
-	position(position),
 	rotation(rotation),
 	scale(scale) {
 
@@ -85,11 +83,10 @@ void Mesh::initVertexArrayObject() {
 
 void Mesh::updateModelMatrix() {
 	modelMatrix = glm::fmat4(1);
-	modelMatrix = glm::translate(modelMatrix, origin);
 	modelMatrix = glm::rotate(modelMatrix, rotation.x, glm::fvec3(1, 0, 0));
 	modelMatrix = glm::rotate(modelMatrix, rotation.y, glm::fvec3(0, 1, 0));
+	// TODO remove rotate around z axis?
 	modelMatrix = glm::rotate(modelMatrix, rotation.z, glm::fvec3(0, 0, 1));
-	modelMatrix = glm::translate(modelMatrix, position - origin);
 	modelMatrix = glm::scale(modelMatrix, scale);
 }
 
