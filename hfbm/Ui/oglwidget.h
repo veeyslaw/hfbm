@@ -13,7 +13,7 @@ public:
   OGLWidget(QWidget* parent);
   ~OGLWidget();
 
-  void setMesh(std::unique_ptr<Mesh> newMesh) { mesh.swap(newMesh); }
+  void setMesh(std::unique_ptr<Mesh> newMesh) { mesh.swap(newMesh); mesh->scaleUp(glm::fvec3(-0.5)); }
 
   QOpenGLContext* getContext() const;
   const Mesh* getMesh() const { return mesh.get(); }
@@ -38,6 +38,6 @@ private:
   glm::fmat4 projectionMatrix = glm::fmat4(1); 
 
   glm::fvec3 cameraPosition = glm::fvec3(0, 0, 1);
-  glm::fvec3 lightPosition = glm::fvec3(0, 0, 2);
+  glm::fvec3 lightPosition = glm::fvec3(0, .5, 2);
 };
 

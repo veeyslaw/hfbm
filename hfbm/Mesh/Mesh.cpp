@@ -85,8 +85,6 @@ void Mesh::updateModelMatrix() {
 	modelMatrix = glm::fmat4(1);
 	modelMatrix = glm::rotate(modelMatrix, rotation.x, glm::fvec3(1, 0, 0));
 	modelMatrix = glm::rotate(modelMatrix, rotation.y, glm::fvec3(0, 1, 0));
-	// TODO remove rotate around z axis?
-	modelMatrix = glm::rotate(modelMatrix, rotation.z, glm::fvec3(0, 0, 1));
 	modelMatrix = glm::scale(modelMatrix, scale);
 }
 

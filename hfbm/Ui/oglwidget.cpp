@@ -22,6 +22,7 @@ void OGLWidget::initializeGL()
 void OGLWidget::initOptions() {
   glClearColor(1, 1, 1, 0);
   glEnable(GL_DEPTH_TEST);
+  glDisable(GL_CULL_FACE);
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
@@ -30,10 +31,7 @@ void OGLWidget::initMatrices() {
   glm::fvec3 camFront(0, 0, -1);
   viewMatrix = glm::lookAt(cameraPosition, cameraPosition + camFront, worldUp);
 
-  float fov = 90;
-  float nearPlane = .1;
-  float farPlane = 1000;
-  projectionMatrix = glm::perspective(glm::radians(fov), static_cast<float>(width()) / height(), nearPlane, farPlane);
+  updateProjectionMatrix(width(), height());
 }
 
 void OGLWidget::updateUniforms() {

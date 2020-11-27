@@ -18,11 +18,12 @@ void main()
 	float diffuse = clamp(dot(posToLightDirVec, normalize(vs_normal)), 0, 1);
 	vec3 diffuseFinal = diffuseColor * diffuse;
 
+	// TODO remove specular light?
 	vec3 lightToPosDirVec = normalize(vs_position - lightPosition);
 	vec3 reflectDirVec = normalize(reflect(lightToPosDirVec, normalize(vs_normal)));
 	vec3 posToViewDirVec = normalize(cameraPosition - vs_position);
-	float specularConstant = pow(max(dot(posToViewDirVec, reflectDirVec), 0), 1); // more is shinier
-	vec3 specularFinal = vec3(1.f, 1.f, 1.f) * specularConstant;
+	float specularConstant = pow(max(dot(posToViewDirVec, reflectDirVec), 0), 2);
+	vec3 specularFinal = vec3(1f, 1f, 1f) * specularConstant;
 
 	fs_color = vec4(vs_color, 1.f) * (vec4(ambientLight, 1.f) + vec4(diffuseFinal, 1.f) + vec4(specularFinal, 1.f));
 }
