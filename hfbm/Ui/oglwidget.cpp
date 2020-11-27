@@ -20,11 +20,9 @@ void OGLWidget::initializeGL()
 }
 
 void OGLWidget::initOptions() {
-  glClearColor(1, 1, 1, 1);
+  glClearColor(0, 0, 0, 1);
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_LIGHT0);
-  glEnable(GL_LIGHTING);
-  // glEnable(GL_COLOR_MATERIAL); // TODO if cool keep, discard - else
+  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void OGLWidget::initMatrices() {
@@ -42,6 +40,7 @@ void OGLWidget::initMatrices() {
 void OGLWidget::updateUniforms() {
   shader->setMatrix4fv(viewMatrix, "ViewMatrix");
   shader->setMatrix4fv(projectionMatrix, "ProjectionMatrix");
+  shader->setVec3fv(lightPos0, "lightPos0");
 }
 
 void OGLWidget::updateProjectionMatrix(int w, int h) {
@@ -52,15 +51,12 @@ void OGLWidget::updateProjectionMatrix(int w, int h) {
   projectionMatrix = glm::perspective(glm::radians(fov), static_cast<float>(width()) / height(), nearPlane, farPlane);
 }
 
-void OGLWidget::updateViewMatrix() {
-
-}
-
 void OGLWidget::paintGL()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   updateUniforms();
   // TODO if needed | GL_STENCIL_BUFFER_BIT
+
   mesh->render(shader);
 }
 
@@ -68,13 +64,14 @@ void OGLWidget::resizeGL(int w, int h)
 {
   glViewport(0, 0, w, h);
   updateProjectionMatrix(w, h);
+  
   /*
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   */
-  mesh->rotate(glm::fvec3(80));
+  mesh->rotate(glm::fvec3(0, 0.05, 0));
 }
 
 QOpenGLContext* OGLWidget::getContext() const {

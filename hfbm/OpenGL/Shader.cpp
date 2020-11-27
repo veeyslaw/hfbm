@@ -31,11 +31,15 @@ void Shader::unuse() {
 	glUseProgram(0);
 }
 
+void Shader::setVec3fv(const glm::fvec3& vector, std::string_view name) {
+	use();
+	glUniform3fv(glGetUniformLocation(program, name.data()), 1, glm::value_ptr(vector));
+	unuse();
+}
+
 void Shader::setMatrix4fv(const glm::fmat4& matrix, std::string_view name) {
 	use();
-	
 	glUniformMatrix4fv(glGetUniformLocation(program, name.data()), 1, GL_FALSE, glm::value_ptr(matrix));
-
 	unuse();
 }
 

@@ -6,7 +6,7 @@
 
 #define STL_HEADER_LENGTH 80
 
-const glm::fvec3 Mesh::origin = glm::fvec3(0);
+//const glm::fvec3 Mesh::origin = glm::fvec3(0);
 GLuint Mesh::vertexArrayObject = 0;
 GLuint Mesh::vertexBufferObject = 0;
 GLuint Mesh::elementBufferObject = 0;
@@ -32,6 +32,14 @@ Mesh::Mesh(
 	for (auto i = 0; i < noOfVertices; i++) {
 		vertices.push_back(points.at(i));
 	}
+
+	auto maxz = 0.;
+	for (const auto& point : points) {
+		if (maxz < point.z) {
+			maxz = point.z;
+		}
+	}
+	origin.z = maxz / 2;
 
 	initVertexArrayObject();
 	updateModelMatrix();

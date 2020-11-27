@@ -21,6 +21,7 @@ public:
 	void use();
 	void unuse();
 
+	void setVec3fv(const glm::fvec3&, std::string_view);
 	void setMatrix4fv(const glm::fmat4&, std::string_view);
 
 private:

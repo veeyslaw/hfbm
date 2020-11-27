@@ -28,7 +28,6 @@ private:
   void initMatrices();
   void updateUniforms();
   void updateProjectionMatrix(int w, int h);
-  void updateViewMatrix();
 
 private:
   std::unique_ptr<Mesh> mesh;
@@ -36,5 +35,7 @@ private:
 
   glm::fmat4 viewMatrix = glm::fmat4(1);
   glm::fmat4 projectionMatrix = glm::fmat4(1);
+
+  glm::fvec3 lightPos0 = glm::fvec3(0, 0, 2);
 };
 
