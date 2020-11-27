@@ -40,6 +40,8 @@ Mesh::Mesh(
 	baseOrigin.z = maxz / 2;
 	origin = baseOrigin;
 
+	calculateVertexNormals();
+
 	initVertexArrayObject();
 	updateModelMatrix();
 }
@@ -172,4 +174,23 @@ void Mesh::scaleUp(float amount) {
 	if (scale > 2) { scale = 2; }
 	if (scale < 0.2) { scale = 0.2; }
 	origin = scale * baseOrigin;
+}
+
+void Mesh::calculateVertexNormals() {
+	for (const auto& triangle : triangles) {
+		auto& point0 = vertices.at(triangle.points.at(0));
+		auto& point1 = vertices.at(triangle.points.at(1));
+		auto& point2 = vertices.at(triangle.points.at(2));
+
+		auto triangleNormal = glm::triangleNormal(point0.position, point1.position, point2.position);
+		//auto triangleNormal = glm::cross(point1.position - point0.position, point2.position - point0.position);
+
+		point0.normal += triangleNormal;
+		point1.normal += triangleNormal;
+		point2.normal += triangleNormal;
+	}
+
+	for (auto& vertex : vertices) {
+		vertex.normal = glm::normalize(vertex.normal);
+	}
 }

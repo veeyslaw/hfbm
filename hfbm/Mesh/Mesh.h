@@ -36,6 +36,8 @@ private:
 
 	std::vector<GLuint> getFlattenedTriangles() const;
 
+	void calculateVertexNormals();
+
 private:
 	glm::fvec3 baseOrigin = glm::fvec3(0);
 	glm::fvec3 origin = glm::fvec3(0);
