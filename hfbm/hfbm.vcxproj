@@ -10,8 +10,41 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Image\Image.cpp" />
+    <ClCompile Include="Image\LabelImageSetter.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh\Mesh.cpp" />
+    <ClCompile Include="OpenGL\Shader.cpp" />
+    <ClCompile Include="Triangulation\Delaunay.cpp" />
+    <ClCompile Include="Triangulation\HeightMap.cpp" />
+    <ClCompile Include="Triangulation\Naive.cpp" />
+    <ClCompile Include="Ui\mainwindow.cpp" />
+    <ClCompile Include="Ui\oglwidget.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Image\Image.h" />
+    <ClInclude Include="Image\LabelImageSetter.h" />
+    <ClInclude Include="Mesh\Mesh.h" />
+    <ClInclude Include="Mesh\Triangle.h" />
+    <ClInclude Include="Mesh\Vertex.h" />
+    <ClInclude Include="OpenGL\Shader.h" />
+    <ClInclude Include="Triangulation\Delaunay.h" />
+    <ClInclude Include="Triangulation\HeightMap.h" />
+    <ClInclude Include="Triangulation\Naive.h" />
+    <ClInclude Include="Triangulation\Triangulator.h" />
+    <ClInclude Include="Ui\oglwidget.h" />
+    <QtMoc Include="Ui\mainwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenGL\FragmentShader.glsl" />
+    <None Include="OpenGL\VertexShader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Ui\mainwindow.ui" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BDA9BA77-F49C-4CC1-A8AD-4BE83AFEFD3E}</ProjectGuid>
+    <ProjectGuid>{A9678C4A-3299-44B1-B392-A815491470FD}</ProjectGuid>
     <Keyword>QtVS_v303</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
@@ -48,21 +81,20 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories); F:\libraries\glm\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);.\glm\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtInstall>msvc2019_64.5</QtInstall>
+    <QtModules>core;gui;opengl;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
-    <QtInstall>msvc2019_64</QtInstall>
+    <QtInstall>msvc2019_64.5</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
@@ -95,39 +127,6 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Image\Image.cpp" />
-    <ClCompile Include="Image\LabelImageSetter.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mesh\Mesh.cpp" />
-    <ClCompile Include="OpenGL\Shader.cpp" />
-    <ClCompile Include="Triangulation\Delaunay.cpp" />
-    <ClCompile Include="Triangulation\HeightMap.cpp" />
-    <ClCompile Include="Triangulation\Naive.cpp" />
-    <ClCompile Include="Ui\mainwindow.cpp" />
-    <ClCompile Include="Ui\oglwidget.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Image\Image.h" />
-    <ClInclude Include="Image\LabelImageSetter.h" />
-    <ClInclude Include="Mesh\Mesh.h" />
-    <ClInclude Include="Mesh\Triangle.h" />
-    <ClInclude Include="Mesh\Vertex.h" />
-    <ClInclude Include="OpenGL\Shader.h" />
-    <ClInclude Include="Triangulation\Delaunay.h" />
-    <ClInclude Include="Triangulation\HeightMap.h" />
-    <ClInclude Include="Triangulation\Naive.h" />
-    <ClInclude Include="Triangulation\Triangulator.h" />
-    <ClInclude Include="Ui\oglwidget.h" />
-    <QtMoc Include="Ui\mainwindow.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="Ui\mainwindow.ui" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OpenGL\FragmentShader.glsl" />
-    <None Include="OpenGL\VertexShader.glsl" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />

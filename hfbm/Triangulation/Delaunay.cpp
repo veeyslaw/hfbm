@@ -1,6 +1,6 @@
 #include "Delaunay.h"
 
-Delaunay::Delaunay(const QImage& image) : Triangulator(image) {}
+Delaunay::Delaunay(const QImage& image, int meshHeight) : Triangulator(image, meshHeight) {}
 
 void Delaunay::run() {
 	if (done) { return; }

@@ -8,7 +8,7 @@ class Delaunay :
     public Triangulator
 {
 public:
-  Delaunay(const QImage&);
+  Delaunay(const QImage&, int);
   void run() override;
 };
 

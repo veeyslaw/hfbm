@@ -24,22 +24,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Image\Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Image\LabelImageSetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ui\mainwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ui\oglwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangulation\Delaunay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Triangulation\HeightMap.cpp">
@@ -48,10 +45,13 @@
     <ClCompile Include="Triangulation\Naive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGL\Shader.cpp">
+    <ClCompile Include="Ui\mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Triangulation\Delaunay.cpp">
+    <ClCompile Include="Ui\oglwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,13 +62,19 @@
     <ClInclude Include="Image\LabelImageSetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ui\oglwidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh\Triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Mesh\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangulation\Delaunay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Triangulation\HeightMap.h">
@@ -80,15 +86,13 @@
     <ClInclude Include="Triangulation\Triangulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh\Triangle.h">
+    <ClInclude Include="Ui\oglwidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGL\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangulation\Delaunay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenGL\FragmentShader.glsl" />
+    <None Include="OpenGL\VertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Ui\mainwindow.h">
@@ -99,13 +103,5 @@
     <QtUic Include="Ui\mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OpenGL\FragmentShader.glsl">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="OpenGL\VertexShader.glsl">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

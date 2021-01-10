@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   connectButtons();
   connectCheckBoxes();
+  connectSliders();
   connect(this, &MainWindow::logSent, this, &MainWindow::log);
 }
 
@@ -43,12 +44,14 @@ void MainWindow::connectCheckBoxes()
 
 void MainWindow::connectSliders()
 {
-  connect(ui.imageHeightSlider, &QSlider::toggled, this, &MainWindow::onHeightChange);
+  connect(ui.imageHeightSlider, &QSlider::valueChanged, this, &MainWindow::onHeightChange);
 }
 
 void MainWindow::convert()
 {
-  Naive naiveTriangulator(image.getImage());
+  const QImage& qimage = image.getImage();
+  int meshHeight = ui.imageHeightSlider->value();
+  Naive naiveTriangulator(qimage, meshHeight);
   naiveTriangulator.run();
 
   ui.meshWidget->setMesh(naiveTriangulator.getMesh(ui.meshWidget->getContext()));
@@ -88,6 +91,11 @@ void MainWindow::onBaseChange(bool checked)
   ui.baseHeightLabel->setEnabled(checked);
   ui.baseHeightSlider->setEnabled(checked);
   ui.baseHeightValueLabel->setEnabled(checked);
+}
+
+void MainWindow::onHeightChange(int value)
+{
+    ui.imageHeightValueLabel->setText(QString::fromStdString(std::to_string(value)));
 }
 
 void MainWindow::updateMesh() {

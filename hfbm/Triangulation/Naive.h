@@ -8,7 +8,7 @@ class Naive :
     public Triangulator
 {
 public:
-  Naive(const QImage&);
+  Naive(const QImage&, int);
   void run() override;
 };
 

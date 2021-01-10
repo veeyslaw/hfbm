@@ -18,7 +18,7 @@ public:
 	}
 
 protected:
-	Triangulator::Triangulator(const QImage& image) : heightMap(image) {
+	Triangulator::Triangulator(const QImage& image, int meshHeight) : heightMap(image), scale(meshHeight / 256.) {
 		points.reserve((long long) heightMap.getHeight() * heightMap.getWidth());
 	}
 
@@ -35,6 +35,7 @@ protected:
 	std::vector<glm::fvec3> points;
 	std::vector<Triangle> triangles;
 
+	float scale;
 	bool done = false;
 };
 

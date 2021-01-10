@@ -27,9 +27,10 @@ private slots:
   void convert();
   void goToOptions();
   void goToConversion();
-  void onAutoLevelChange(bool checked);
-  void onBorderChange(bool checked);
-  void onBaseChange(bool checked);
+  void onAutoLevelChange(bool);
+  void onBorderChange(bool);
+  void onBaseChange(bool);
+  void onHeightChange(int);
   void log(const std::string&);
 
 private:

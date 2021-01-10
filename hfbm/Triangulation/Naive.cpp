@@ -1,6 +1,6 @@
 #include "Naive.h"
 
-Naive::Naive(const QImage& image) : Triangulator(image) {}
+Naive::Naive(const QImage& image, int meshHeight) : Triangulator(image, meshHeight) {}
 
 void Naive::run() {
 	if (done) { return; }
@@ -15,7 +15,6 @@ void Naive::run() {
 
 	points.reserve((long long) height * width);
 
-	float scale = 1; // TODO parametrize z scaling
 	for (auto y = 0; y < height; y++) {
 		for (auto x = 0; x < width; x++) {
 			auto z = scale * heightMap.at((long long) y * width + x);
