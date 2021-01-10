@@ -16,6 +16,7 @@ public:
 private:
   void connectButtons();
   void connectCheckBoxes();
+  void connectSliders();
 
 signals:
   void logSent(const std::string&);

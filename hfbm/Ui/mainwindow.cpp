@@ -41,6 +41,11 @@ void MainWindow::connectCheckBoxes()
   connect(ui.baseCheckBox, &QCheckBox::toggled, this, &MainWindow::onBaseChange);
 }
 
+void MainWindow::connectSliders()
+{
+  connect(ui.imageHeightSlider, &QSlider::toggled, this, &MainWindow::onHeightChange);
+}
+
 void MainWindow::convert()
 {
   Naive naiveTriangulator(image.getImage());
@@ -63,9 +68,9 @@ void MainWindow::goToConversion()
 
 void MainWindow::onAutoLevelChange(bool checked)
 {
-  ui.imageHeightLabel->setEnabled(checked);
-  ui.imageHeightSlider->setEnabled(checked);
-  ui.imageHeightValueLabel->setEnabled(checked);
+  ui.imageHeightLabel->setEnabled(!checked);
+  ui.imageHeightSlider->setEnabled(!checked);
+  ui.imageHeightValueLabel->setEnabled(!checked);
 }
 
 void MainWindow::onBorderChange(bool checked)

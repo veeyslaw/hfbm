@@ -4,11 +4,11 @@
 #include "Triangulator.h"
 #include "../Mesh/Mesh.h"
 
-class Naive :
+class Delaunay :
     public Triangulator
 {
 public:
-  Naive(const QImage&);
+  Delaunay(const QImage&);
   void run() override;
 };
 
