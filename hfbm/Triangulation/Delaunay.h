@@ -17,7 +17,7 @@ class Delaunay :
     public Triangulator
 {
 public:
-  Delaunay(const QImage&, int, double);
+  Delaunay(std::unique_ptr<HeightMap>, int, double);
   void run() override;
   void insert(glm::fvec3);
   int locate(glm::fvec3);

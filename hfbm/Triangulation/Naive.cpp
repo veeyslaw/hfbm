@@ -1,12 +1,12 @@
 #include "Naive.h"
 
-Naive::Naive(const QImage& image, int meshHeight) : Triangulator(image, meshHeight) {}
+Naive::Naive(std::unique_ptr<HeightMap> heightMap, int meshHeight) : Triangulator(std::move(heightMap), meshHeight) {}
 
 void Naive::run() {
 	if (done) { return; }
 
-	auto height = heightMap.getHeight();
-	auto width = heightMap.getWidth();
+	auto height = heightMap->getHeight();
+	auto width = heightMap->getWidth();
 
 	if (height <= 0 || width <= 0) {
 		done = true;
@@ -17,7 +17,7 @@ void Naive::run() {
 
 	for (auto y = 0; y < height; y++) {
 		for (auto x = 0; x < width; x++) {
-			auto z = scale * heightMap.at((long long) y * width + x);
+			auto z = heightMap->at((long long) y * width + x);
 			points.push_back(glm::fvec3(x, y, z));
 		}
 	}

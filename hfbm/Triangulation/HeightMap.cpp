@@ -12,3 +12,16 @@ HeightMap::HeightMap(const QImage& image) :
 		}
 	}
 }
+
+void HeightMap::invert() {
+	auto max = *std::max_element(values.begin(), values.end());
+	for (auto& value : values) {
+		value = max - value;
+	}
+}
+
+void HeightMap::scale(double scale) {
+	for (auto& value : values) {
+		value *= scale;
+	}
+}

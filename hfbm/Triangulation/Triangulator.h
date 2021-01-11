@@ -18,12 +18,13 @@ public:
 	}
 
 protected:
-	Triangulator::Triangulator(const QImage& image, int meshHeight, double error = 0) : heightMap(image), meshHeight(meshHeight), scale(meshHeight / 256.), error(error) {
-		points.reserve((long long) heightMap.getHeight() * heightMap.getWidth());
+	Triangulator::Triangulator(std::unique_ptr<HeightMap> aHeightMap, int meshHeight, double error = 0) : meshHeight(meshHeight), error(error) {
+		heightMap.swap(aHeightMap);
+		points.reserve((long long) heightMap->getHeight() * heightMap->getWidth());
 	}
 
 	void mirrorY() {
-		auto height = heightMap.getHeight();
+		auto height = heightMap->getHeight();
 
 		for (auto& point : points) {
 			point.y = height - point.y;
@@ -31,12 +32,11 @@ protected:
 	}
 
 protected:
-	HeightMap heightMap;
+	std::unique_ptr<HeightMap> heightMap;
 	std::vector<glm::fvec3> points;
 	std::vector<Triangle> triangles;
 
 	int meshHeight;
-	double scale;
 	double error;
 	bool done = false;
 };

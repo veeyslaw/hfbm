@@ -51,7 +51,13 @@ void MainWindow::connectSliders()
 void MainWindow::convert()
 {
   auto qimage = image.getImage();
+  auto heightMap = std::make_unique<HeightMap>(qimage);
+  auto invert = ui.invertCheckBox->isChecked();
+  if (invert) {
+    heightMap->invert();
+  }
   auto meshHeight = ui.imageHeightSlider->value();
+  heightMap->scale(meshHeight / 256.);
   auto error = ui.maxErrorSpinBox->value();
 
   auto algorithm = ui.algorithmComboBox->currentIndex();
@@ -59,10 +65,10 @@ void MainWindow::convert()
 
   switch (algorithm) {
   case 0:
-    triangulator = std::make_unique<Naive>(qimage, meshHeight);
+    triangulator = std::make_unique<Naive>(std::move(heightMap), meshHeight);
     break;
   case 1:
-    triangulator = std::make_unique<Delaunay>(qimage, meshHeight, error);
+    triangulator = std::make_unique<Delaunay>(std::move(heightMap), meshHeight, error);
     break;
   }
   triangulator->run();

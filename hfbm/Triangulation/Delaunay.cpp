@@ -1,12 +1,12 @@
 #include "Delaunay.h"
 
-Delaunay::Delaunay(const QImage& image, int meshHeight, double error) : Triangulator(image, meshHeight, error) {}
+Delaunay::Delaunay(std::unique_ptr<HeightMap> heightMap, int meshHeight, double error) : Triangulator(std::move(heightMap), meshHeight, error) {}
 
 void Delaunay::run() {
 	if (done) { return; }
 
-	auto height = heightMap.getHeight();
-	auto width = heightMap.getWidth();
+	auto height = heightMap->getHeight();
+	auto width = heightMap->getWidth();
 
 	if (height <= 0 || width <= 0) {
 		done = true;
@@ -18,7 +18,7 @@ void Delaunay::run() {
 	// add corner points
 	for (auto y = 0; y < height; y+=height-1) {
 		for (auto x = 0; x < width; x+=width-1) {
-			auto z = scale * heightMap.at((long long)y * width + x);
+			auto z = heightMap->at((long long)y * width + x);
 			points.push_back(glm::fvec3(x, y, z));
 		}
 	}
@@ -34,7 +34,7 @@ void Delaunay::run() {
 			if (x == 0 && y == 0 || x == 0 && y == height - 1 || x == width - 1 && y == 0 || x == width - 1 && y == height - 1) {
 				continue;
 			}
-			auto z = scale * heightMap.at((long long)y * width + x);
+			auto z = heightMap->at((long long)y * width + x);
 			auto point = glm::fvec3(x, y, z);
 			auto error = getError(point);
 			unusedPoints.push_back(std::make_pair(point, error));
@@ -158,7 +158,7 @@ std::pair<int, int> Delaunay::locate(Suspect suspect) {
 }
 
 double Delaunay::getError(glm::fvec3 point) {
-	return std::abs(heightMap.at(point.y * heightMap.getWidth() + point.x) - interpolate(point)) / meshHeight;
+	return std::abs(heightMap->at(point.y * heightMap->getWidth() + point.x) - interpolate(point)) / meshHeight;
 }
 
 double Delaunay::interpolate(glm::fvec3 point) {

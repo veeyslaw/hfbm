@@ -14,6 +14,9 @@ public:
 		return values.at(index);
 	}
 
+	void invert();
+	void scale(double);
+
 private:
 	int height;
 	int width;
