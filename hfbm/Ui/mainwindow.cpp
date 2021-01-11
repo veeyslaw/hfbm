@@ -10,6 +10,7 @@
 #include "../Mesh/Vertex.h"
 #include "../Mesh/Mesh.h"
 #include "../Triangulation/Naive.h"
+#include "../Triangulation/Delaunay.h"
 
 #define CONVERSION_PAGE 0
 #define OPTIONS_PAGE 1
@@ -49,12 +50,22 @@ void MainWindow::connectSliders()
 
 void MainWindow::convert()
 {
-  const QImage& qimage = image.getImage();
-  int meshHeight = ui.imageHeightSlider->value();
-  Naive naiveTriangulator(qimage, meshHeight);
-  naiveTriangulator.run();
+  auto qimage = image.getImage();
+  auto meshHeight = ui.imageHeightSlider->value();
+  auto error = ui.maxErrorSpinBox->value();
 
-  ui.meshWidget->setMesh(naiveTriangulator.getMesh(ui.meshWidget->getContext()));
+  auto algorithm = ui.algorithmComboBox->currentIndex();
+  std::unique_ptr<Triangulator> triangulator;
+
+  switch (algorithm) {
+  case 0:
+    triangulator = std::make_unique<Naive>(qimage, meshHeight);
+  case 1:
+    triangulator = std::make_unique<Delaunay>(qimage, meshHeight, error);
+  }
+  triangulator->run();
+
+  ui.meshWidget->setMesh(triangulator->getMesh(ui.meshWidget->getContext()));
   ui.meshWidget->update();
   ui.meshWidget->getMesh()->saveToSTL("test.stl");
 }
