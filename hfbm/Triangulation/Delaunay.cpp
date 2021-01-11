@@ -85,29 +85,76 @@ bool Delaunay::notReady(const std::vector<std::pair<glm::fvec3, double>>& unused
 }
 
 void Delaunay::insert(glm::fvec3 point) {
+	auto newPointIndex = points.size();
 	points.push_back(point);
 	auto triangleIndex = locate(point);
-	const auto& triangle = triangles.at(triangleIndex);
-	const auto& A = points.at(triangle.points[0]);
-	const auto& B = points.at(triangle.points[1]);
-	const auto& C = points.at(triangle.points[2]);
+	auto& triangle = triangles.at(triangleIndex);
+	auto t1 = triangle.points[0];
+	auto t2 = triangle.points[1];
+	auto t3 = triangle.points[2];
 
-	// split in 3
-	// check outer edges and flip if necessary, then check recursively those edges
+	// split in 3 triangles
+	triangle.points[2] = newPointIndex;
+	auto secondTriangle = triangles.size();
+	triangles.push_back(Triangle(newPointIndex, t2, t3));
+	auto thirdTriangle = triangles.size();
+	triangles.push_back(Triangle(newPointIndex, t3, t1));
+
+	std::vector<Suspect> suspects;
+	// add outer edges as suspects
+	suspects.push_back(Suspect(triangleIndex, t1, t2, newPointIndex));
+	suspects.push_back(Suspect(secondTriangle, t2, t3, newPointIndex));
+	suspects.push_back(Suspect(thirdTriangle, t3, t1, newPointIndex));
+	// check edges and flip if necessary, then check recursively outer edges
+	while (!suspects.empty()) {
+		auto suspect = suspects.back();
+		auto oppositeSuspect = locate(suspect);
+		suspects.pop_back();
+		auto P = points.at(suspect.point);
+		auto A = points.at(suspect.edge[0]);
+		auto B = points.at(suspect.edge[1]);
+		auto C = points.at(oppositeSuspect.second);
+		B -= A;
+		C -= A;
+		// center formula: https://en.wikipedia.org/wiki/Circumscribed_circle
+		auto factor = 2 * (B.x * C.y - B.y * C.x);
+		auto centerX = (C.y * (B.x * B.x + B.y * B.y) - B.y * (C.x * C.x + C.y * C.y)) / factor + A.x;
+		auto centerY = (B.x * (C.x * C.x + C.y * C.y) - C.x * (B.x * B.x + B.y * B.y)) / factor + A.y;
+
+
+		auto radius = 0;
+	}
 }
 
 int Delaunay::locate(glm::fvec3 point) {
-	// find triangle
-	int index = -1;
-
 	for (auto i = 0; i < triangles.size(); i++) {
 		if (pointInTriangle(point, i)) {
-			index = i;
+			return i;
 			break;
 		}
 	}
 
-	return index;
+	return -1;
+}
+
+std::pair<int, int> Delaunay::locate(Suspect suspect) {
+	// find triangle that shares the edge
+	for (auto i = 0; i < triangles.size(); i++) {
+		const auto& triangle = triangles.at(i);
+		auto p1 = triangle.points[0];
+		auto p2 = triangle.points[1];
+		auto p3 = triangle.points[2];
+		if (suspect.point != p1 && suspect.point != p2 && suspect.point != p3 &&
+			(suspect.edge[0] == p1 || suspect.edge[0] == p2 || suspect.edge[0] == p3) &&
+			(suspect.edge[1] == p1 || suspect.edge[1] == p2 || suspect.edge[1] == p3)
+		) {
+			auto oppositePoint = p1 != suspect.edge[0] && p1 != suspect.edge[1] ? p1 :
+				p2 != suspect.edge[0] && p2 != suspect.edge[1] ? p2 :
+				p3;
+			return std::make_pair(i, oppositePoint);
+			break;
+		}
+	}
 }
 
 double Delaunay::getError(glm::fvec3 point) {

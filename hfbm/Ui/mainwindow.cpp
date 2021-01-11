@@ -60,8 +60,10 @@ void MainWindow::convert()
   switch (algorithm) {
   case 0:
     triangulator = std::make_unique<Naive>(qimage, meshHeight);
+    break;
   case 1:
     triangulator = std::make_unique<Delaunay>(qimage, meshHeight, error);
+    break;
   }
   triangulator->run();
 
@@ -115,15 +117,11 @@ void MainWindow::updateMesh() {
 
 
 static void initializeImageFileDialog(QFileDialog& dialog, QFileDialog::AcceptMode acceptMode)
-// TODO REFACTOR
 {
   static bool firstDialog = true;
 
   if (firstDialog) {
-    firstDialog = false;
-    // const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-    // dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
-  }
+    firstDialog = false;}
 
   QStringList mimeTypeFilters;
   const QByteArrayList supportedMimeTypes = acceptMode == QFileDialog::AcceptOpen
