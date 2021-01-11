@@ -111,7 +111,7 @@ int Delaunay::locate(glm::fvec3 point) {
 }
 
 double Delaunay::getError(glm::fvec3 point) {
-	return std::abs(heightMap.at(point.y * heightMap.getWidth() + point.x) - interpolate(point));
+	return std::abs(heightMap.at(point.y * heightMap.getWidth() + point.x) - interpolate(point)) / meshHeight;
 }
 
 double Delaunay::interpolate(glm::fvec3 point) {
