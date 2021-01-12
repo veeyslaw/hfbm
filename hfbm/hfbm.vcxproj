@@ -16,7 +16,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh\Mesh.cpp" />
     <ClCompile Include="OpenGL\Shader.cpp" />
-    <ClCompile Include="Triangulation\Delaunay.cpp" />
+    <ClCompile Include="Triangulation\Greedy.cpp" />
     <ClCompile Include="Triangulation\HeightMap.cpp" />
     <ClCompile Include="Triangulation\Naive.cpp" />
     <ClCompile Include="Ui\mainwindow.cpp" />
@@ -29,7 +29,7 @@
     <ClInclude Include="Mesh\Triangle.h" />
     <ClInclude Include="Mesh\Vertex.h" />
     <ClInclude Include="OpenGL\Shader.h" />
-    <ClInclude Include="Triangulation\Delaunay.h" />
+    <ClInclude Include="Triangulation\Greedy.h" />
     <ClInclude Include="Triangulation\HeightMap.h" />
     <ClInclude Include="Triangulation\Naive.h" />
     <ClInclude Include="Triangulation\Triangulator.h" />
