@@ -56,9 +56,12 @@ void MainWindow::convert()
   if (invert) {
     heightMap->invert();
   }
-  auto meshHeight = ui.imageHeightSlider->value();
-  heightMap->scale(meshHeight / 256.);
-  auto error = ui.maxErrorSpinBox->value();
+  int meshHeight = 1;
+  if (!ui.autoLevelCheckBox->isChecked()) {
+    meshHeight = ui.imageHeightSlider->value();
+    heightMap->scale(meshHeight / 256.);
+  }
+  auto error = ui.maxErrorSpinBox->value() / 100;
 
   auto algorithm = ui.algorithmComboBox->currentIndex();
   std::unique_ptr<Triangulator> triangulator;
@@ -68,7 +71,7 @@ void MainWindow::convert()
     triangulator = std::make_unique<Naive>(std::move(heightMap), meshHeight);
     break;
   case 1:
-    triangulator = std::make_unique<Delaunay>(std::move(heightMap), meshHeight, error);
+    triangulator = std::make_unique<Greedy>(std::move(heightMap), meshHeight, error);
     break;
   }
   triangulator->run();

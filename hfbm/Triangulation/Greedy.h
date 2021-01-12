@@ -13,11 +13,11 @@ struct Suspect {
   std::array<int, 2> edge;
 };
 
-class Delaunay :
+class Greedy :
     public Triangulator
 {
 public:
-  Delaunay(std::unique_ptr<HeightMap>, int, double);
+  Greedy(std::unique_ptr<HeightMap>, int, double);
   void run() override;
   void insert(glm::fvec3);
   int locate(glm::fvec3);
