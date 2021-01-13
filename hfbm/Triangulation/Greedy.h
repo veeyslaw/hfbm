@@ -10,7 +10,9 @@ class Greedy :
 public:
   Greedy(std::unique_ptr<HeightMap>, int, double);
   void run() override;
-  void insert(glm::ivec2, int);
+
+protected:
+  virtual void insert(glm::ivec2, int);
   void addTriangle(Triangle, int, int, int, int);
   std::pair<double, glm::ivec2> getMaxError(Triangle);
   void updateNeighbor(int, std::pair<int, int>, int);

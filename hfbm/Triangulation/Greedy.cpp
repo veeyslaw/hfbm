@@ -1,4 +1,5 @@
 #include "Greedy.h"
+#include "GreedyHelpers.h"
 #include <stdexcept>
 #include <iostream>
 
@@ -85,11 +86,6 @@ void Greedy::run() {
 	done = true;
 }
 
-int getEdgeOffset(const Triangle& triangle, std::pair<int, int> edge) {
-	return (edge.first == triangle.points[0] || edge.first == triangle.points[1]) && (edge.second == triangle.points[0] || edge.second == triangle.points[1]) ? 0 :
-		(edge.first == triangle.points[1] || edge.first == triangle.points[2]) && (edge.second == triangle.points[1] || edge.second == triangle.points[2]) ? 1 : 2;
-}
-
 void Greedy::updateNeighbor(int tind, std::pair<int, int> edge, int newNeighbor) {
 	if (tind < 0) {
 		return;
@@ -130,8 +126,7 @@ void Greedy::insert(glm::ivec2 point, int triangleIndex) {
 	auto ABPcol = areCollinear(A, B, p);
 	auto BCPcol = areCollinear(B, C, p);
 	auto CAPcol = areCollinear(C, A, p);
-	// 46, 46 at 71
-	// 
+
 	auto newTriangle = triangles.size();
 	if (!(ABPcol || BCPcol || CAPcol)) {
 		// no collinears
@@ -202,10 +197,6 @@ void Greedy::insert(glm::ivec2 point, int triangleIndex) {
 			}
 		}
 	}
-}
-
-std::int64_t doubleArea(glm::ivec2 p1, glm::ivec2 p2, glm::ivec2 p3) {
-	return abs(p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y));
 }
 
 std::pair<double, glm::ivec2> Greedy::getMaxError(Triangle t) {

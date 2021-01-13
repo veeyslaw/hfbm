@@ -409,14 +409,14 @@
         <item row="1" column="3">
          <widget class="QDoubleSpinBox" name="maxErrorSpinBox">
           <property name="value">
-           <double>0.010000000000000</double>
+           <double>10.000000000000000</double>
           </property>
          </widget>
         </item>
         <item row="0" column="3">
          <widget class="QComboBox" name="algorithmComboBox">
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <item>
            <property name="text">
@@ -425,12 +425,12 @@
           </item>
           <item>
            <property name="text">
-            <string>Delaunay</string>
+            <string>Greedy</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Data-dependent</string>
+            <string>Greedy Delaunay</string>
            </property>
           </item>
          </widget>

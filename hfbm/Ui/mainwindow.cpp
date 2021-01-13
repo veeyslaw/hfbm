@@ -11,6 +11,7 @@
 #include "../Mesh/Mesh.h"
 #include "../Triangulation/Naive.h"
 #include "../Triangulation/Greedy.h"
+#include "../Triangulation/Delaunay.h"
 
 #define CONVERSION_PAGE 0
 #define OPTIONS_PAGE 1
@@ -72,6 +73,9 @@ void MainWindow::convert()
     break;
   case 1:
     triangulator = std::make_unique<Greedy>(std::move(heightMap), meshHeight, error);
+    break;
+  case 2:
+    triangulator = std::make_unique<Delaunay>(std::move(heightMap), meshHeight, error);
     break;
   }
   triangulator->run();
