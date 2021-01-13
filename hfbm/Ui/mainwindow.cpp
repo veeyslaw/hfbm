@@ -80,9 +80,10 @@ void MainWindow::convert()
   }
   triangulator->run();
 
-  ui.meshWidget->setMesh(triangulator->getMesh(ui.meshWidget->getContext()));
+  auto mesh = triangulator->getMesh(ui.meshWidget->getContext());
+  mesh->saveToSTL("test.stl");
+  ui.meshWidget->setMesh(std::move(mesh));
   ui.meshWidget->update();
-  ui.meshWidget->getMesh()->saveToSTL("test.stl");
 }
 
 void MainWindow::goToOptions()

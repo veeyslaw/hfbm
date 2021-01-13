@@ -128,9 +128,8 @@ void Mesh::writeTriangleData(std::ofstream& fileStream) const {
 }
 
 void Mesh::saveToSTL(const std::string& path) const {
-	std::ofstream fileStream(path, std::ios_base::out | std::ios::binary);
+	std::ofstream fileStream(path, std::ios_base::out | std::ios::binary | std::ofstream::trunc);
 	if (!fileStream.is_open()) {
-		// TODO handle error
 		return;
 	}
 	
