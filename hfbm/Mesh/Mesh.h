@@ -24,7 +24,7 @@ public:
 	void scaleUp(float);
 	void render(std::shared_ptr<Shader> shader);
 
-	void saveToSTL(const std::string&) const;
+	int saveToSTL(const std::string&) const;
 
 private:
 	void initVertexArrayObject();
@@ -32,7 +32,7 @@ private:
 
 	void updateUniforms(std::shared_ptr<Shader> shader);
 
-	void writeTriangleData(std::ofstream&) const;
+	void writeTriangleData(std::fstream&) const;
 
 	std::vector<GLuint> getFlattenedTriangles() const;
 

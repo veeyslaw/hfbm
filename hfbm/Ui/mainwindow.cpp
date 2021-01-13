@@ -2,6 +2,8 @@
 #include "../Image/Image.h"
 
 #include <string>
+#include <sstream>
+#include <chrono>
 #include <QFileDialog>
 #include <QImageReader>
 #include <QImageWriter>
@@ -76,10 +78,16 @@ void MainWindow::convert()
     triangulator = std::make_unique<Delaunay>(std::move(heightMap), meshHeight, error);
     break;
   }
+  auto start = std::chrono::steady_clock::now();
   triangulator->run();
+  auto end = std::chrono::steady_clock::now();
+  std::chrono::duration<double> elapsed_seconds = end - start;
 
   auto mesh = triangulator->getMesh(ui.meshWidget->getContext());
-  mesh->saveToSTL("test.stl");
+  auto fileSize = mesh->saveToSTL("test.stl");
+  std::stringstream timeSize;
+  timeSize << elapsed_seconds.count() << " s,   " << fileSize / 1024. << " KB ";
+  ui.timeSizeLabel->setText(QString::fromStdString(timeSize.str()));
   ui.meshWidget->setMesh(std::move(mesh));
   ui.meshWidget->update();
 }
