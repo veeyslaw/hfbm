@@ -10,7 +10,7 @@
 #include "../Mesh/Vertex.h"
 #include "../Mesh/Mesh.h"
 #include "../Triangulation/Naive.h"
-#include "../Triangulation/Delaunay.h"
+#include "../Triangulation/Greedy.h"
 
 #define CONVERSION_PAGE 0
 #define OPTIONS_PAGE 1
