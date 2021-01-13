@@ -113,185 +113,47 @@
           </property>
          </widget>
         </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="timeSizeWidget">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="optionsPage">
        <layout class="QGridLayout" name="optionsPageLayout">
-        <item row="8" column="0">
-         <widget class="QLabel" name="borderHeightLabel">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="algorithmLabel">
           <property name="text">
-           <string>Border height</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           <string>Triangulation algorithm</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="6">
-         <widget class="QLabel" name="borderHeightValueLabel">
-          <property name="enabled">
-           <bool>false</bool>
+        <item row="0" column="3">
+         <widget class="QComboBox" name="algorithmComboBox">
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>88</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
+          <item>
+           <property name="text">
+            <string>Naive (1 pixel -&gt; 1 vector)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Greedy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Greedy With Delaunay</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QCheckBox" name="invertCheckBox">
-          <property name="text">
-           <string>Invert</string>
-          </property>
-          <property name="tristate">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QCheckBox" name="blurCheckBox">
-          <property name="text">
-           <string>Blur</string>
-          </property>
-          <property name="tristate">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="borderThicknessLabel">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Border thickness</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="imageHeightLabel">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Image height</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="0">
-         <widget class="QLabel" name="baseHeightLabel">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Base height</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="3">
-         <widget class="QSlider" name="borderHeightSlider">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QCheckBox" name="borderCheckBox">
-          <property name="text">
-           <string>Border</string>
-          </property>
-          <property name="tristate">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="0">
-         <widget class="QCheckBox" name="baseCheckBox">
-          <property name="text">
-           <string>Base</string>
-          </property>
-          <property name="tristate">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="6">
-         <widget class="QLabel" name="borderThicknessValueLabel">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>88</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="3">
-         <widget class="QSlider" name="borderThicknessSlider">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
          <widget class="QCheckBox" name="autoLevelCheckBox">
           <property name="text">
            <string>Auto level</string>
@@ -304,29 +166,54 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="3">
-         <widget class="QSlider" name="imageHeightSlider">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximum">
-           <number>512</number>
-          </property>
-          <property name="value">
-           <number>256</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+        <item row="1" column="0">
+         <widget class="QLabel" name="maxErrorLabel">
+          <property name="text">
+           <string>Max error</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="6">
+        <item row="1" column="3">
+         <widget class="QDoubleSpinBox" name="maxErrorSpinBox">
+          <property name="decimals">
+           <number>5</number>
+          </property>
+          <property name="value">
+           <double>1.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="imageHeightLabel">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Image height</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="invertCheckBox">
+          <property name="text">
+           <string>Invert</string>
+          </property>
+          <property name="tristate">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
+         <widget class="QPushButton" name="toConversionButton">
+          <property name="text">
+           <string>Back</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="6">
          <widget class="QLabel" name="imageHeightValueLabel">
           <property name="enabled">
            <bool>false</bool>
@@ -351,15 +238,8 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="3">
-         <widget class="QPushButton" name="toConversionButton">
-          <property name="text">
-           <string>Back</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="3">
-         <widget class="QSlider" name="baseHeightSlider">
+        <item row="4" column="3">
+         <widget class="QSlider" name="imageHeightSlider">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -369,76 +249,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="maximum">
+           <number>512</number>
+          </property>
+          <property name="value">
+           <number>256</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="6">
-         <widget class="QLabel" name="baseHeightValueLabel">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>88</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="maxErrorLabel">
-          <property name="text">
-           <string>Max error</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QDoubleSpinBox" name="maxErrorSpinBox">
-          <property name="value">
-           <double>10.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QComboBox" name="algorithmComboBox">
-          <property name="currentIndex">
-           <number>2</number>
-          </property>
-          <item>
-           <property name="text">
-            <string>Naive (1 pixel -&gt; 1 vector)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Greedy</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Greedy Delaunay</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="algorithmLabel">
-          <property name="text">
-           <string>Triangulation algorithm</string>
           </property>
          </widget>
         </item>

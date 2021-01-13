@@ -1,6 +1,6 @@
 #include "Naive.h"
 
-Naive::Naive(std::unique_ptr<HeightMap> heightMap, int meshHeight) : Triangulator(std::move(heightMap), meshHeight) {}
+Naive::Naive(std::unique_ptr<HeightMap> heightMap, double meshHeight) : Triangulator(std::move(heightMap), meshHeight) {}
 
 void Naive::run() {
 	if (done) { return; }

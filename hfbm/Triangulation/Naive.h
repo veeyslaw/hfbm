@@ -8,7 +8,7 @@ class Naive :
     public Triangulator
 {
 public:
-  Naive(std::unique_ptr<HeightMap>, int);
+  Naive(std::unique_ptr<HeightMap>, double);
   void run() override;
 };
 

@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <iostream>
 
-Delaunay::Delaunay(std::unique_ptr<HeightMap> heightMap, int meshHeight, double error) : 
+Delaunay::Delaunay(std::unique_ptr<HeightMap> heightMap, double meshHeight, double error) : 
 	Greedy(std::move(heightMap), meshHeight, error)
 {}
 

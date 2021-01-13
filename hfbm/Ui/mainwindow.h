@@ -28,8 +28,6 @@ private slots:
   void goToOptions();
   void goToConversion();
   void onAutoLevelChange(bool);
-  void onBorderChange(bool);
-  void onBaseChange(bool);
   void onHeightChange(int);
   void log(const std::string&);
 

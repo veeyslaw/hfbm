@@ -40,8 +40,6 @@ void MainWindow::connectButtons()
 void MainWindow::connectCheckBoxes()
 {
   connect(ui.autoLevelCheckBox, &QCheckBox::toggled, this, &MainWindow::onAutoLevelChange);
-  connect(ui.borderCheckBox, &QCheckBox::toggled, this, &MainWindow::onBorderChange);
-  connect(ui.baseCheckBox, &QCheckBox::toggled, this, &MainWindow::onBaseChange);
 }
 
 void MainWindow::connectSliders()
@@ -57,10 +55,10 @@ void MainWindow::convert()
   if (invert) {
     heightMap->invert();
   }
-  int meshHeight = 1;
+  auto meshHeight = 1.;
   if (!ui.autoLevelCheckBox->isChecked()) {
-    meshHeight = ui.imageHeightSlider->value();
-    heightMap->scale(meshHeight / 256.);
+    meshHeight = ui.imageHeightSlider->value() / 256.;
+    heightMap->scale(meshHeight);
   }
   auto error = ui.maxErrorSpinBox->value() / 100;
 
@@ -101,23 +99,6 @@ void MainWindow::onAutoLevelChange(bool checked)
   ui.imageHeightLabel->setEnabled(!checked);
   ui.imageHeightSlider->setEnabled(!checked);
   ui.imageHeightValueLabel->setEnabled(!checked);
-}
-
-void MainWindow::onBorderChange(bool checked)
-{
-  ui.borderThicknessLabel->setEnabled(checked);
-  ui.borderThicknessSlider->setEnabled(checked);
-  ui.borderThicknessValueLabel->setEnabled(checked);
-  ui.borderHeightLabel->setEnabled(checked);
-  ui.borderHeightSlider->setEnabled(checked);
-  ui.borderHeightValueLabel->setEnabled(checked);
-}
-
-void MainWindow::onBaseChange(bool checked)
-{
-  ui.baseHeightLabel->setEnabled(checked);
-  ui.baseHeightSlider->setEnabled(checked);
-  ui.baseHeightValueLabel->setEnabled(checked);
 }
 
 void MainWindow::onHeightChange(int value)

@@ -8,7 +8,7 @@ class Delaunay :
     public Greedy
 {
 public:
-  Delaunay(std::unique_ptr<HeightMap>, int, double);
+  Delaunay(std::unique_ptr<HeightMap>, double, double);
 
 protected:
   void insert(glm::ivec2, int) override;

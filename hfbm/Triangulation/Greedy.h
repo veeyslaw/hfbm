@@ -8,7 +8,7 @@ class Greedy :
     public Triangulator
 {
 public:
-  Greedy(std::unique_ptr<HeightMap>, int, double);
+  Greedy(std::unique_ptr<HeightMap>, double, double);
   void run() override;
 
 protected:

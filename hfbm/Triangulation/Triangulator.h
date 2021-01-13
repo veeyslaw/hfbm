@@ -18,7 +18,7 @@ public:
 	}
 
 protected:
-	Triangulator::Triangulator(std::unique_ptr<HeightMap> aHeightMap, int meshHeight, double error = 0) : meshHeight(meshHeight), error(error) {
+	Triangulator::Triangulator(std::unique_ptr<HeightMap> aHeightMap, double meshHeight, double error = 0) : meshHeight(meshHeight), error(error * meshHeight) {
 		heightMap.swap(aHeightMap);
 		points.reserve((long long) heightMap->getHeight() * heightMap->getWidth());
 	}
@@ -36,7 +36,7 @@ protected:
 	std::vector<glm::fvec3> points;
 	std::vector<Triangle> triangles;
 
-	int meshHeight;
+	double meshHeight;
 	double error;
 	bool done = false;
 };

@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <iostream>
 
-Greedy::Greedy(std::unique_ptr<HeightMap> heightMap, int meshHeight, double error) : Triangulator(std::move(heightMap), meshHeight, error),
+Greedy::Greedy(std::unique_ptr<HeightMap> heightMap, double meshHeight, double error) : Triangulator(std::move(heightMap), meshHeight, error),
 	used(this->heightMap->getWidth() * this->heightMap->getHeight(), false)
 {}
 
@@ -251,7 +251,7 @@ std::pair<double, glm::ivec2> Greedy::getMaxError(Triangle t) {
 
 			auto h = heightMap->at(y * width + x);
 			auto interpolation = interpolate(point);
-			auto error = std::abs(h - interpolation) / meshHeight;
+			auto error = std::abs(h - interpolation);
 			if (error > maxError) {
 				maxError = error;
 				maxCoord = point;
